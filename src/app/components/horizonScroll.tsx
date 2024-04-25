@@ -122,7 +122,7 @@ export default function Home({ children }: Props) {
       window.addEventListener("wheel", handleScroll);
       window.addEventListener("resize", handleResize);
       window.addEventListener("touchstart", handleTouchStart);
-      window.addEventListener("touchmove", handleTouchMove);
+      window.addEventListener("touchmove", handleTouchMove, { passive: false });
       window.addEventListener("touchend", handleTouchEnd);
     }
 
