@@ -50,6 +50,7 @@ export default function Home({ children }: Props) {
   }, []);
 
   const handleTouchMove = useCallback((e: TouchEvent) => {
+    e.preventDefault();
     const scrollArea = scrollAreaRef.current;
     if (scrollArea) {
       const touch = e.touches[0];
@@ -62,7 +63,7 @@ export default function Home({ children }: Props) {
         const maxScroll =
           scrollArea.scrollWidth -
           wrapperRef.current!.getBoundingClientRect().width;
-          targetScrollRef.current = Math.max(0, Math.min(targetScrollRef.current - deltaY * 0.1, maxScroll));
+          targetScrollRef.current = Math.max(0, Math.min(targetScrollRef.current - deltaY, maxScroll));
       }
     }
   }, []);
@@ -78,7 +79,7 @@ export default function Home({ children }: Props) {
       const deltaY = touchEndY - touchStartY;
       const velocity = deltaY / timeDelta;
 
-      targetScrollRef.current += velocity * 10;
+      targetScrollRef.current += velocity * 100;
       const maxScroll =
         scrollArea.scrollWidth -
         wrapperRef.current!.getBoundingClientRect().width;
