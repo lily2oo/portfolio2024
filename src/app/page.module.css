@@ -14,8 +14,10 @@
 }
 
 .flex{
+  width: 100%;
   display: flex;
   flex-direction: row;
+  align-items: flex-start;
 }
 
 .section1 {
@@ -24,5 +26,18 @@
 
 .section2 {
   background-color: blue;
-  
+}
+
+.canvasContainer {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.canvas {
+  width: 100vw;
+  height: 100vh;
 }
