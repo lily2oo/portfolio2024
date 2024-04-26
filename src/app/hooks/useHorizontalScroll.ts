@@ -1,16 +1,18 @@
-"use client";
-import "../globals.css";
-import styles from "../page.module.css";
-import { useEffect, useRef, useCallback, ReactNode } from "react";
-type Props = {
-  children: ReactNode;
-};
+import {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+} from "react";
 
-export default function Home({ children }: Props) {
+interface UseHorizontalScrollOptions {};
+
+export default function useHorizontalScroll(options: UseHorizontalScrollOptions = {}) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const targetScrollRef = useRef(0);
   const currentScrollRef = useRef(0);
+  const [scrollPosition, setScrollPosition] = useState<number>(0);
 
   const handleScroll = useCallback((e: WheelEvent) => {
     const scrollArea = scrollAreaRef.current;
@@ -63,7 +65,10 @@ export default function Home({ children }: Props) {
         const maxScroll =
           scrollArea.scrollWidth -
           wrapperRef.current!.getBoundingClientRect().width;
-          targetScrollRef.current = Math.max(0, Math.min(targetScrollRef.current - deltaY, maxScroll));
+        targetScrollRef.current = Math.max(
+          0,
+          Math.min(targetScrollRef.current - deltaY, maxScroll)
+        );
       }
     }
   }, []);
@@ -108,6 +113,7 @@ export default function Home({ children }: Props) {
           0.1
         );
         scrollArea.style.transform = `translate3d(${-currentScrollRef.current}px, 0, 0)`;
+        setScrollPosition(currentScrollRef.current);
         requestAnimationFrame(updateScroll);
       }
     };
@@ -142,13 +148,9 @@ export default function Home({ children }: Props) {
     handleTouchEnd,
   ]);
 
-  return (
-    <>
-      <div className={styles.wrapper} ref={wrapperRef}>
-        <div className={styles.scrollable} ref={scrollAreaRef}>
-          <div className={styles.flex}>{children}</div>
-        </div>
-      </div>
-    </>
-  );
-}
+  return {
+    wrapperRef,
+    scrollAreaRef,
+    scrollPosition,
+  };
+};
