@@ -2,7 +2,7 @@
 import "./globals.css";
 import styles from "./page.module.css";
 import useHorizontalScroll from "./hooks/useHorizontalScroll";
-import Canvas from "./components/canvas";
+import Canvas from "./components/three/canvas";
 
 export default function Home() {
   const { wrapperRef, scrollAreaRef, scrollPosition } = useHorizontalScroll();

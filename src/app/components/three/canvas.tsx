@@ -1,15 +1,22 @@
 "use client";
 import { OrbitControls, Sky } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
-import styles from "../page.module.css";
+import { Canvas, useFrame } from "@react-three/fiber";
+import styles from "../../page.module.css";
+import { use, useRef } from "react";
+import * as THREE from "three";
+import Ribbon from "./ribbon";
 
 interface Props {
   scrollPosition: number;
 }
 
 const Object = ({ scrollPosition }: Props) => {
+  const ref = useRef<THREE.Mesh>(null);
+  useFrame(() => {
+    ref.current!.rotation.x = scrollPosition / 100;
+  });
   return (
-    <mesh position={[0, 0, 0]}>
+    <mesh ref={ref} position={[0, 0, 0]}>
       <boxGeometry args={[1, 1, 1]} />
       <meshNormalMaterial />
     </mesh>
@@ -20,7 +27,9 @@ const Scene = ({ scrollPosition }: Props) => {
   return (
     <div className={styles.canvasContainer} >
       <Canvas className={styles.canvas} camera={{ position: [0, 0, 2] }}>
-        <Object scrollPosition={scrollPosition} />
+        {/* <Object scrollPosition={scrollPosition} /> */}
+        <Ribbon />
+        <OrbitControls />
       </Canvas>
     </div>
   );
