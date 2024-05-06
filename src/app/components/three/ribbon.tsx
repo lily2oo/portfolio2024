@@ -1,13 +1,8 @@
 "use client";
 import { OrbitControls, Sky, CatmullRomLine } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
-import styles from "../page.module.css";
 import { useState, useEffect, useRef } from "react";
 import * as THREE from "three";
-import { extend } from "@react-three/fiber";
-import { Line2 } from "three/examples/jsm/lines/Line2.d.ts";
-import { temp } from "three/examples/jsm/nodes/Nodes.js";
-import { time } from "console";
 
 const Ribbon = () => {
   const [curvePoints, setCurvePoints] = useState<THREE.Vector3[]>(() => {
@@ -18,7 +13,7 @@ const Ribbon = () => {
       initialCurvePoints.push(
         new THREE.Vector3().setFromSphericalCoords(
           1,
-          Math.PI / 2 + 0.3*(Math.random() - 0.5),
+          Math.PI / 2 + 0.3 * (Math.random() - 0.5),
           theta
         )
       );
@@ -82,7 +77,9 @@ const Ribbon = () => {
       for (let i = 0; i <= number; i++) {
         point = spacedPoints[i];
         binormalShift.copy(frenetFrames.binormals[i]).multiplyScalar(d);
-        finalPoints.push(new THREE.Vector3().copy(point).add(binormalShift).normalize());
+        finalPoints.push(
+          new THREE.Vector3().copy(point).add(binormalShift).normalize()
+        );
       }
     });
 
@@ -95,14 +92,33 @@ const Ribbon = () => {
     ref.current!.material = materials;
   }, [curvePoints]);
 
-  useFrame(() => {
+  useFrame((state) => {
+    const { pointer, camera } = state;
     timeRef.current += 0.001;
-    const materials = Array.isArray(ref.current!.material) ? ref.current!.material : [ref.current!.material];
+    const materials = Array.isArray(ref.current!.material)
+      ? ref.current!.material
+      : [ref.current!.material];
     materials.forEach((m) => {
-      if (m instanceof THREE.MeshBasicMaterial || m instanceof THREE.MeshStandardMaterial) {
-        m.map!.offset.x = timeRef.current*0.5;
+      if (
+        m instanceof THREE.MeshBasicMaterial ||
+        m instanceof THREE.MeshStandardMaterial
+      ) {
+        m.map!.offset.x = timeRef.current * 0.5;
       }
     });
+
+    camera.position.x = THREE.MathUtils.lerp(
+      0,
+      (pointer.x)*1,
+      0.05
+    );
+
+    camera.position.y = THREE.MathUtils.lerp(
+      0,
+      (pointer.y)*10,
+      0.05
+    );
+    camera.lookAt(0, 0, 0);
   });
 
   return (
@@ -112,7 +128,7 @@ const Ribbon = () => {
         <sphereGeometry args={[1, 30, 30]} />
         <meshNormalMaterial wireframe />
       </mesh> */}
-      {curvePoints.length > 0 ? (
+      {/* {curvePoints.length > 0 ? (
         <CatmullRomLine
           //   ref={lineRef}
           points={curvePoints}
@@ -123,7 +139,7 @@ const Ribbon = () => {
           lineWidth={0}
           dashed={false}
         />
-      ) : null}
+      ) : null} */}
     </>
   );
 };
