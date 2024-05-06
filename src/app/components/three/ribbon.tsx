@@ -6,31 +6,63 @@ import { useState, useEffect, useRef } from "react";
 import * as THREE from "three";
 import { extend } from "@react-three/fiber";
 import { Line2 } from "three/examples/jsm/lines/Line2.d.ts";
+import { temp } from "three/examples/jsm/nodes/Nodes.js";
+import { time } from "console";
 
 const Ribbon = () => {
-  const [curvePoints, setCurvePoints] = useState<THREE.Vector3[]>([]);
-  //   const lineRef = useRef<Line2>(null);
-  const ref = useRef<THREE.Mesh>(null);
-
-  useEffect(() => {
+  const [curvePoints, setCurvePoints] = useState<THREE.Vector3[]>(() => {
     const num = 8;
-    const newCurvePoints = [...curvePoints];
-
+    const initialCurvePoints = [];
     for (let i = 0; i < num; i++) {
       let theta = (i / num) * Math.PI * 2;
-      newCurvePoints.push(
+      initialCurvePoints.push(
         new THREE.Vector3().setFromSphericalCoords(
           1,
-          Math.PI / 2 + Math.random() - 0.5,
+          Math.PI / 2 + 0.3*(Math.random() - 0.5),
           theta
         )
       );
     }
+    return initialCurvePoints;
+  });
 
-    setCurvePoints(newCurvePoints);
+  const ref = useRef<THREE.Mesh>(null);
+  const timeRef = useRef(0);
 
-    const curve = new THREE.CatmullRomCurve3(newCurvePoints);
-    curve.tension = 0.5;
+  useEffect(() => {
+    const frontTexture = new THREE.TextureLoader().load("/front.jpg");
+    const backTexture = new THREE.TextureLoader().load("/back.jpg");
+
+    [frontTexture, backTexture].forEach((t) => {
+      t.wrapS = 1000;
+      t.wrapT = 1000;
+      t.repeat.set(1, 1);
+      t.offset.setX(0.5);
+    });
+
+    frontTexture.flipY = false;
+    backTexture.flipY = false;
+
+    const frontMaterial = new THREE.MeshStandardMaterial({
+      map: frontTexture,
+      side: THREE.BackSide,
+      roughness: 0.65,
+      metalness: 0.25,
+      flatShading: true,
+    });
+
+    const backMaterial = new THREE.MeshStandardMaterial({
+      map: backTexture,
+      side: THREE.FrontSide,
+      roughness: 0.65,
+      metalness: 0.25,
+      flatShading: true,
+    });
+
+    const materials = [frontMaterial, backMaterial];
+
+    const curve = new THREE.CatmullRomCurve3(curvePoints);
+    curve.tension = 0.1;
     curve.closed = true;
 
     let number = 1000;
@@ -38,47 +70,57 @@ const Ribbon = () => {
     let spacedPoints = curve.getSpacedPoints(number);
     let tempPlane = new THREE.PlaneGeometry(1, 1, number, 1);
 
-    let dimentions = [-0.1,0.1];
+    tempPlane.addGroup(0, 6000, 0);
+    tempPlane.addGroup(0, 6000, 1);
+
+    let dimentions = [-0.08, 0.08];
     let point = new THREE.Vector3();
     let binormalShift = new THREE.Vector3();
     let finalPoints: any = [];
 
-    dimentions.forEach(d => {
+    dimentions.forEach((d) => {
       for (let i = 0; i <= number; i++) {
         point = spacedPoints[i];
         binormalShift.copy(frenetFrames.binormals[i]).multiplyScalar(d);
-        finalPoints.push(new THREE.Vector3().copy(point).add(binormalShift));
+        finalPoints.push(new THREE.Vector3().copy(point).add(binormalShift).normalize());
       }
     });
 
     tempPlane.setFromPoints(finalPoints);
 
-    console.log(tempPlane, finalPoints);
-
     finalPoints[0].copy(finalPoints[number]);
     finalPoints[number + 1].copy(finalPoints[2 * number + 1]);
 
     ref.current!.geometry = tempPlane;
-  }, []);
+    ref.current!.material = materials;
+  }, [curvePoints]);
+
+  useFrame(() => {
+    timeRef.current += 0.001;
+    const materials = Array.isArray(ref.current!.material) ? ref.current!.material : [ref.current!.material];
+    materials.forEach((m) => {
+      if (m instanceof THREE.MeshBasicMaterial || m instanceof THREE.MeshStandardMaterial) {
+        m.map!.offset.x = timeRef.current*0.5;
+      }
+    });
+  });
 
   return (
     <>
-      <mesh ref={ref}>
-        <meshBasicMaterial color={0x00ff00} side={THREE.DoubleSide} wireframe={true}/>
-      </mesh>
-      <mesh position={[0, 0, 0]}>
+      <mesh ref={ref}></mesh>
+      {/* <mesh position={[0, 0, 0]}>
         <sphereGeometry args={[1, 30, 30]} />
         <meshNormalMaterial wireframe />
-      </mesh>
+      </mesh> */}
       {curvePoints.length > 0 ? (
         <CatmullRomLine
           //   ref={lineRef}
           points={curvePoints}
           closed={true}
           curveType="centripetal"
-          tension={0.5}
+          tension={0.3}
           color="black"
-          lineWidth={1}
+          lineWidth={0}
           dashed={false}
         />
       ) : null}

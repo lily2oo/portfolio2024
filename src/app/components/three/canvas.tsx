@@ -29,7 +29,9 @@ const Scene = ({ scrollPosition }: Props) => {
       <Canvas className={styles.canvas} camera={{ position: [0, 0, 2] }}>
         {/* <Object scrollPosition={scrollPosition} /> */}
         <Ribbon />
-        <OrbitControls />
+        {/* <OrbitControls /> */}
+        <ambientLight color={0xffffff} intensity={0.5} />
+        <directionalLight color={0xffffff} intensity={0.5} position={[0, 0, 5]} />
       </Canvas>
     </div>
   );
