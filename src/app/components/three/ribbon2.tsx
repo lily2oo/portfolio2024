@@ -4,15 +4,20 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useState, useEffect, useRef } from "react";
 import * as THREE from "three";
 
-const Ribbon = () => {
+interface Props {
+  scrollPosition: number;
+}
+
+const Ribbon2 = ({ scrollPosition }: Props) => {
   const [curvePoints, setCurvePoints] = useState<THREE.Vector3[]>(() => {
     const num = 8;
+    const radius = 2;
     const initialCurvePoints = [];
     for (let i = 0; i < num; i++) {
       let theta = (i / num) * Math.PI * 2;
       initialCurvePoints.push(
         new THREE.Vector3().setFromSphericalCoords(
-          1,
+          radius,
           Math.PI / 2 + 0.3 * (Math.random() - 0.5),
           theta
         )
@@ -23,7 +28,6 @@ const Ribbon = () => {
 
   const ref = useRef<THREE.Mesh>(null);
   const timeRef = useRef(0);
-  
 
   useEffect(() => {
     const frontTexture = new THREE.TextureLoader().load("/front.jpg");
@@ -108,14 +112,23 @@ const Ribbon = () => {
       }
     });
 
-    camera.position.x = 0;
-    camera.position.y = 0;
-    camera.position.z = 2;
+    const cameraDistance = 1;
+    const cameraTarget = new THREE.Vector3(0, 0, 0);
+    const cameraPosition = new THREE.Vector3(
+      THREE.MathUtils.mapLinear(scrollPosition, 0, document.body.clientWidth, 0, 10),
+      0,
+      0
+    );
+
+    console.log(cameraPosition.x, cameraPosition.y, cameraPosition.z);
+
+    camera.position.lerp(cameraPosition, 0.05);
+    camera.updateProjectionMatrix();
   });
 
   return (
     <>
-      <mesh ref={ref} position={[0,0,0]}></mesh>
+      <mesh ref={ref} position={[5,0,0]}></mesh>
       {/* <mesh position={[0, 0, 0]}>
         <sphereGeometry args={[1, 30, 30]} />
         <meshNormalMaterial wireframe />
@@ -136,4 +149,4 @@ const Ribbon = () => {
   );
 };
 
-export default Ribbon;
+export default Ribbon2;
