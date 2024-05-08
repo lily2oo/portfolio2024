@@ -65,7 +65,11 @@ const Scene2 = ({ scrollPosition }: scrollProps) => {
 
 const ScrollHandler = ({ scrollPosition }: scrollProps) => {
   const [currentScene, setCurrentScene] = useState("scene1");
-  const threshold = window.innerWidth * 1;
+  const [threshold, setThreshold] = useState(0);
+
+  useEffect(() => {
+    setThreshold(window.innerWidth * 1);
+  }, []);
 
   useEffect(() => {
     if (scrollPosition < threshold) {
