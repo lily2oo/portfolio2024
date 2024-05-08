@@ -11,14 +11,32 @@ export default function Home() {
       <div className={styles.wrapper} ref={wrapperRef}>
         <div className={styles.scrollable} ref={scrollAreaRef}>
           <div className={styles.flex}>
-            <section className={styles.section1}></section>
-            <section className={styles.section2}></section>
-            <section className={styles.section1}></section>
-            <section className={styles.section2}></section>
-            <section className={styles.section1}></section>
-            <section className={styles.section2}></section>
-            <section className={styles.section1}></section>
-            <section className={styles.section2}></section>
+            <section className={styles.section1}>
+              <div className={styles.absoluteArea}>
+                <div className={styles.container}>
+                  <h1 className={styles.title}>Portfolio</h1>
+                  <p className={styles.name}>@2024 Jumpei Suko</p>
+                </div>
+              </div>
+            </section>
+            <section className={styles.section2}>
+              <div className={styles.absoluteArea}></div>
+            </section>
+            <section className={styles.section1}>
+              <div className={styles.absoluteArea}></div>
+            </section>
+            <section className={styles.section2}>
+              <div className={styles.absoluteArea}></div>
+            </section>
+            <section className={styles.section1}>
+              <div className={styles.absoluteArea}></div>
+            </section>{" "}
+            <section className={styles.section2}>
+              <div className={styles.absoluteArea}></div>
+            </section>
+            <section className={styles.section1}>
+              <div className={styles.absoluteArea}></div>
+            </section>
           </div>
         </div>
       </div>

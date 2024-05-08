@@ -4,6 +4,18 @@
   padding: 0;
 }
 
+:root {
+  --fontplus-font-family: "TsukuGoPr5-R-AvenirNextLTPro-Regular", sans-serif;
+  --color--black: #424446;
+  --color--blue: #c4ecdb;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--fontplus-font-family);
+  color: var(--color--black);
+}
+
 ul,
 li {
   list-style: none;
@@ -21,8 +33,9 @@ body {
   overscroll-behavior: none;
 }
 
-
 section {
   width: 100vw;
-  height: 100vh;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 8vh 4vw;
 }

@@ -8,21 +8,52 @@ import Ribbon from "./ribbon";
 import Ribbon2 from "./ribbon2";
 import { threshold } from "three/examples/jsm/nodes/Nodes.js";
 
-interface Props {
+interface scrollProps {
   scrollPosition: number;
 }
 
-const Scene1 = () => {
+interface transitionProps {
+  children: React.ReactNode;
+  isActive: boolean;
+}
+
+const Transition = ({ children, isActive }: transitionProps) => {
+  const [opacity, setOpacity] = useState(isActive ? 1 : 0);
+
+  useEffect(() => {
+    if (isActive) {
+      setOpacity(1);
+    } else {
+      const timeout = setTimeout(() => setOpacity(0), 500);
+      return () => clearTimeout(timeout);
+    }
+  }, [isActive]);
+
+  return (
+    <div
+      className={styles.transition}
+      style={{
+        opacity,
+        transition: "opacity 0.5s ease-in-out",
+        pointerEvents: isActive ? "auto" : "none",
+      }}
+    >
+      {children}
+    </div>
+  );
+};
+
+const Scene1 = ({ scrollPosition }: scrollProps) => {
   return (
     <Canvas className={styles.canvas} camera={{ position: [0, 0, 2] }}>
-      <Ribbon />
+      <Ribbon scrollPosition={scrollPosition} />
       <ambientLight color={0xffffff} intensity={0.5} />
       <directionalLight color={0xffffff} intensity={0.5} position={[0, 0, 5]} />
     </Canvas>
   );
 };
 
-const Scene2 = ({ scrollPosition }: Props) => {
+const Scene2 = ({ scrollPosition }: scrollProps) => {
   return (
     <Canvas className={styles.canvas} camera={{ position: [0, 0, 2] }}>
       <Ribbon2 scrollPosition={scrollPosition} />
@@ -32,33 +63,31 @@ const Scene2 = ({ scrollPosition }: Props) => {
   );
 };
 
-const ScrollHandler = ({ scrollPosition }: Props) => {
+const ScrollHandler = ({ scrollPosition }: scrollProps) => {
   const [currentScene, setCurrentScene] = useState("scene1");
   const threshold = window.innerWidth * 1;
 
   useEffect(() => {
-    console.log(threshold);
     if (scrollPosition < threshold) {
       setCurrentScene("scene1");
-      console.log("scene1");
     } else {
       setCurrentScene("scene2");
-      console.log("scene2");
     }
   }, [scrollPosition, threshold]);
 
   return (
     <>
-      {currentScene === "scene1" ? (
-        <Scene1 />
-      ) : (
+      <Transition isActive={currentScene === "scene1"}>
+        <Scene1 scrollPosition={scrollPosition} />
+      </Transition>
+      <Transition isActive={currentScene === "scene2"}>
         <Scene2 scrollPosition={scrollPosition} />
-      )}
+      </Transition>
     </>
   );
 };
 
-const Scene = ({ scrollPosition }: Props) => {
+const Scene = ({ scrollPosition }: scrollProps) => {
   return (
     <div className={styles.canvasContainer}>
       <ScrollHandler scrollPosition={scrollPosition} />

@@ -4,7 +4,11 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useState, useEffect, useRef } from "react";
 import * as THREE from "three";
 
-const Ribbon = () => {
+interface Props {
+  scrollPosition:number;
+}
+
+const Ribbon = ({scrollPosition}:Props) => {
   const [curvePoints, setCurvePoints] = useState<THREE.Vector3[]>(() => {
     const num = 8;
     const initialCurvePoints = [];
@@ -23,17 +27,19 @@ const Ribbon = () => {
 
   const ref = useRef<THREE.Mesh>(null);
   const timeRef = useRef(0);
-  
 
   useEffect(() => {
-    const frontTexture = new THREE.TextureLoader().load("/front.jpg");
-    const backTexture = new THREE.TextureLoader().load("/back.jpg");
-
-    [frontTexture, backTexture].forEach((t) => {
-      t.wrapS = 1000;
-      t.wrapT = 1000;
-      t.repeat.set(1, 1);
-      t.offset.setX(0.5);
+    const frontTexture = new THREE.TextureLoader().load("/front.webp", () => {
+      frontTexture.wrapS = 1000;
+      frontTexture.wrapT = 1000;
+      frontTexture.repeat.set(1, 1);
+      frontTexture.offset.setX(0.5);
+    });
+    const backTexture = new THREE.TextureLoader().load("/back.webp", () => {
+      backTexture.wrapS = 1000;
+      backTexture.wrapT = 1000;
+      backTexture.repeat.set(1, 1);
+      backTexture.offset.setX(0.5);
     });
 
     frontTexture.flipY = false;
@@ -93,6 +99,7 @@ const Ribbon = () => {
     ref.current!.material = materials;
   }, [curvePoints]);
 
+
   useFrame((state) => {
     const { pointer, camera } = state;
     timeRef.current += 0.001;
@@ -104,18 +111,30 @@ const Ribbon = () => {
         m instanceof THREE.MeshBasicMaterial ||
         m instanceof THREE.MeshStandardMaterial
       ) {
-        m.map!.offset.x = timeRef.current * 0.5;
+        if (m.map) {
+          m.map.offset.x = timeRef.current * 0.5;
+        }
       }
     });
-
-    camera.position.x = 0;
-    camera.position.y = 0;
+    const cameraPosition = new THREE.Vector3(
+      THREE.MathUtils.mapLinear(
+        scrollPosition,
+        0,
+        document.body.clientWidth,
+        0,
+        50
+      ),
+      0,
+      0
+    );
+    camera.position.copy(cameraPosition)  ;
     camera.position.z = 2;
+    camera.updateProjectionMatrix();
   });
-
+  
   return (
     <>
-      <mesh ref={ref} position={[0,0,0]}></mesh>
+      <mesh ref={ref} position={[0, 0, 0]}></mesh>
       {/* <mesh position={[0, 0, 0]}>
         <sphereGeometry args={[1, 30, 30]} />
         <meshNormalMaterial wireframe />
