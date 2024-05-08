@@ -26,31 +26,27 @@ const Ribbon2 = ({ scrollPosition }: Props) => {
   const timeRef = useRef(0);
 
   useEffect(() => {
-    const texture = new THREE.TextureLoader().load("/ribbon.webp");
-
-    [texture].forEach((t) => {
-      t.wrapS = 1000;
-      t.wrapT = 1000;
-      t.repeat.set(1, 1);
-      t.offset.setX(0.5);
+    const texture = new THREE.TextureLoader().load("/ribbon.webp", () => {
+      texture.wrapS = 1000;
+      texture.wrapT = 1000;
+      texture.repeat.set(1, 1);
+      texture.offset.setX(0.5);
     });
 
     texture.flipY = false;
 
     const frontMaterial = new THREE.MeshStandardMaterial({
       map: texture,
-      side: THREE.BackSide,
-      roughness: 0.65,
-      metalness: 0.25,
+      side: THREE.FrontSide,
       flatShading: true,
+      toneMapped: false,
     });
 
     const backMaterial = new THREE.MeshStandardMaterial({
       map: texture,
-      side: THREE.FrontSide,
-      roughness: 0.65,
-      metalness: 0.25,
+      side: THREE.BackSide,
       flatShading: true,
+      toneMapped: false,
     });
 
     const materials = [frontMaterial, backMaterial];
@@ -131,22 +127,6 @@ const Ribbon2 = ({ scrollPosition }: Props) => {
   return (
     <>
       <mesh ref={ref} position={[2, 0, 0]} scale={[0.75, 0.75, 0.75]}></mesh>
-      {/* <mesh position={[0, 0, 0]}>
-        <sphereGeometry args={[1, 30, 30]} />
-        <meshNormalMaterial wireframe />
-      </mesh> */}
-      {/* {curvePoints.length > 0 ? (
-        <CatmullRomLine
-          //   ref={lineRef}
-          points={curvePoints}
-          closed={true}
-          curveType="centripetal"
-          tension={0.3}
-          color="black"
-          lineWidth={0}
-          dashed={false}
-        />
-      ) : null} */}
     </>
   );
 };
