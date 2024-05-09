@@ -94,13 +94,16 @@
 }
 
 .skills {
+  box-sizing: content-box;
   text-align: right;
-  margin-right: 100px;
+  width: 600px;
+  padding-right: 300px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   .inline {
     display: inline-block;
+    transform: translate(6.8px, 0);
     .titles {
       width: auto;
       display: flex;
@@ -117,12 +120,13 @@
         margin-bottom: 32px;
         transform: translate(-4.8px, 0);
         display: inline-block;
+        text-wrap: nowrap;
       }
       .desc {
         font-size: 16px;
         display: inline-block;
+        text-align: left;
       }
-      margin-bottom: 80px;
     }
   }
   .skillContainer {
@@ -134,7 +138,7 @@
       display: inline-block;
     }
     .skill1 {
-      margin-bottom: 56px;
+      margin-bottom: 48px;
       display: flex;
       flex-direction: column;
       align-items: flex-end;
@@ -151,8 +155,24 @@
   }
 }
 
-.section2 {
-  background-color: blue;
+.works{
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color--black);
+}
+
+.footer{
+  .container {
+    .title {
+      display: inline-block;
+      font-size: 64px;
+      line-height: 1em;
+      text-transform: uppercase;
+    }
+    .name {
+      font-size: 16px;
+    }
+  }
 }
 
 .canvasContainer {

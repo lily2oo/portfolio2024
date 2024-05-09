@@ -1,13 +1,10 @@
-import {
-  useState,
-  useEffect,
-  useRef,
-  useCallback,
-} from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
-interface UseHorizontalScrollOptions {};
+interface UseHorizontalScrollOptions {}
 
-export default function useHorizontalScroll(options: UseHorizontalScrollOptions = {}) {
+export default function useHorizontalScroll(
+  options: UseHorizontalScrollOptions = {}
+) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const targetScrollRef = useRef(0);
@@ -101,6 +98,10 @@ export default function useHorizontalScroll(options: UseHorizontalScrollOptions 
 
   useEffect(() => {
     const scrollArea = scrollAreaRef.current;
+    let animationFrameId: number | null = null;
+    let lastScrollTime = Date.now();
+    let deltaY = 0;
+
     const lerp = (start: number, end: number, multiplier: number) => {
       return (1 - multiplier) * start + multiplier * end;
     };
@@ -114,8 +115,28 @@ export default function useHorizontalScroll(options: UseHorizontalScrollOptions 
         );
         scrollArea.style.transform = `translate3d(${-currentScrollRef.current}px, 0, 0)`;
         setScrollPosition(currentScrollRef.current);
-        console.log(currentScrollRef.current)
-        requestAnimationFrame(updateScroll);
+
+        const isScrollFinished = Math.abs(
+          currentScrollRef.current - targetScrollRef.current
+        );
+        if (Date.now() - lastScrollTime > 10 && isScrollFinished < 0.1) {
+          cancelAnimationFrame(animationFrameId!);
+          animationFrameId = null;
+          console.log("cancel");
+        } else {
+          animationFrameId = requestAnimationFrame(updateScroll);
+          console.log("request");
+          console.log(deltaY);
+        }
+      }
+    };
+    const handleScrollWithDeltaY = (e: WheelEvent) => {
+      deltaY = e.deltaY;
+      lastScrollTime = Date.now();
+      handleScroll(e);
+
+      if (!animationFrameId) {
+        animationFrameId = requestAnimationFrame(updateScroll);
       }
     };
 
@@ -127,7 +148,7 @@ export default function useHorizontalScroll(options: UseHorizontalScrollOptions 
         scrollArea.getBoundingClientRect().width
       }px`;
       requestAnimationFrame(updateScroll);
-      window.addEventListener("wheel", handleScroll);
+      window.addEventListener("wheel", handleScrollWithDeltaY);
       window.addEventListener("resize", handleResize);
       window.addEventListener("touchstart", handleTouchStart);
       window.addEventListener("touchmove", handleTouchMove, { passive: false });
@@ -135,7 +156,10 @@ export default function useHorizontalScroll(options: UseHorizontalScrollOptions 
     }
 
     return () => {
-      window.removeEventListener("wheel", handleScroll);
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+      window.removeEventListener("wheel", handleScrollWithDeltaY);
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchmove", handleTouchMove);
@@ -154,4 +178,4 @@ export default function useHorizontalScroll(options: UseHorizontalScrollOptions 
     scrollAreaRef,
     scrollPosition,
   };
-};
+}

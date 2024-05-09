@@ -57,7 +57,7 @@ const Scene2 = ({ scrollPosition }: scrollProps) => {
   return (
     <Canvas className={styles.canvas} camera={{ position: [0, 0, 2] }}>
       <Ribbon2 scrollPosition={scrollPosition} />
-      <pointLight color={0xffffff} intensity={1.0} position={[2, 0, 0]} />
+      <pointLight color={0xffffff} intensity={1.0} position={[2.7, 0, 0]} />
       <ambientLight color={0xffffff} intensity={0.5} />
     </Canvas>
   );
@@ -72,7 +72,7 @@ const ScrollHandler = ({ scrollPosition }: scrollProps) => {
   }, []);
 
   useEffect(() => {
-    if (scrollPosition < threshold) {
+    if (scrollPosition < threshold*0.8) {
       setCurrentScene("scene1");
     } else {
       setCurrentScene("scene2");

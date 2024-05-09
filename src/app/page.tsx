@@ -81,17 +81,16 @@ export default function Home() {
                 </div>
               </div>
             </section>
-            <section className={styles.section2}>
+            <section className={styles.works}>
               <div className={styles.absoluteArea}></div>
             </section>
-            <section className={styles.section1}>
-              <div className={styles.absoluteArea}></div>
-            </section>{" "}
-            <section className={styles.section2}>
-              <div className={styles.absoluteArea}></div>
-            </section>
-            <section className={styles.section1}>
-              <div className={styles.absoluteArea}></div>
+            <section className={styles.footer}>
+              <div className={styles.absoluteArea}>
+                <div className={styles.container}>
+                  <h1 className={styles.title}>Portfolio</h1>
+                  <p className={styles.name}>@2024 Jumpei Suko</p>
+                </div>
+              </div>
             </section>
           </div>
         </div>

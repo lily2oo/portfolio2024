@@ -13,8 +13,8 @@ const Ribbon2 = ({ scrollPosition }: Props) => {
     return [
       new THREE.Vector3(0, -0.11, 2.0),
       new THREE.Vector3(1.4, 0.25, 1.4),
-      new THREE.Vector3(1.98, 0.27, 0),
-      new THREE.Vector3(1.4, -0.27, -1.4),
+      new THREE.Vector3(1.98, -0.07, 0),
+      new THREE.Vector3(1.4, -0.07, -1.4),
       new THREE.Vector3(0, -1.51, -2.0),
       new THREE.Vector3(-1.4, -1.07, -1.4),
       new THREE.Vector3(-1.98, 1.5, 0),
@@ -132,7 +132,7 @@ const Ribbon2 = ({ scrollPosition }: Props) => {
 
   return (
     <>
-      <mesh ref={ref} position={[2, 0, 0]} scale={[0.75, 0.75, 0.75]}></mesh>
+      <mesh ref={ref} position={[3.5, 0, 0]} scale={[0.75, 0.75, 0.75]}></mesh>
     </>
   );
 };
