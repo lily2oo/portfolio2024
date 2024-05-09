@@ -53,7 +53,7 @@ export default function Home() {
               </div>
             </section>
             <section className={styles.skills}>
-              <div className={styles.absoluteArea}>
+              <div className={styles.inline}>
                 <div className={styles.titles}>
                   <p className={styles.caption}>I have Skills about</p>
                   <h2 className={styles.h2}>Design & Engineering</h2>
@@ -63,21 +63,21 @@ export default function Home() {
                     設計します。
                   </p>
                 </div>
-                <div className={styles.skillContainer}>
-                  <div className={styles.skill1}>
-                    <h3 className={styles.h3}>Design</h3>
-                    <p className={styles.p}>Webデザイン</p>
-                    <p className={styles.p}>グラフィック</p>
-                    <p className={styles.p}>写真・映像</p>
-                    <p className={styles.p}>編集</p>
-                    <p className={styles.p}>企画・コピー</p>
-                  </div>
-                  <div className={styles.skill2}>
-                    <h3 className={styles.h3}>Enginnering</h3>
-                    <p className={styles.p}>Next.js+TypeScipt</p>
-                    <p className={styles.p}>Three,R3f</p>
-                    <p className={styles.p}>Flutter</p>
-                  </div>
+              </div>
+              <div className={styles.skillContainer}>
+                <div className={styles.skill1}>
+                  <h3 className={styles.h3}>Design</h3>
+                  <p className={styles.p}>Webデザイン</p>
+                  <p className={styles.p}>グラフィック</p>
+                  <p className={styles.p}>写真・映像</p>
+                  <p className={styles.p}>編集</p>
+                  <p className={styles.p}>企画・コピー</p>
+                </div>
+                <div className={styles.skill2}>
+                  <h3 className={styles.h3}>Enginnering</h3>
+                  <p className={styles.p}>Next.js+TypeScipt</p>
+                  <p className={styles.p}>Three,R3f</p>
+                  <p className={styles.p}>Flutter</p>
                 </div>
               </div>
             </section>
