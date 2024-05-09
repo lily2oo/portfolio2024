@@ -114,6 +114,7 @@ export default function useHorizontalScroll(options: UseHorizontalScrollOptions 
         );
         scrollArea.style.transform = `translate3d(${-currentScrollRef.current}px, 0, 0)`;
         setScrollPosition(currentScrollRef.current);
+        console.log(currentScrollRef.current)
         requestAnimationFrame(updateScroll);
       }
     };

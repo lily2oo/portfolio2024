@@ -1,6 +1,6 @@
 "use client";
-import { OrbitControls, Sky, CatmullRomLine } from "@react-three/drei";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { OrbitControls, Sky, CatmullRomLine, useTexture, } from "@react-three/drei";
+import { Canvas, useFrame, useThree} from "@react-three/fiber";
 import { useState, useEffect, useRef, useMemo } from "react";
 import * as THREE from "three";
 
@@ -24,16 +24,22 @@ const Ribbon2 = ({ scrollPosition }: Props) => {
 
   const ref = useRef<THREE.Mesh>(null);
   const timeRef = useRef(0);
+  const { size, scene } = useThree();
 
+  const texture = useTexture('/ribbon.webp');
+  
   useEffect(() => {
-    const texture = new THREE.TextureLoader().load("/ribbon.webp", () => {
-      texture.wrapS = 1000;
-      texture.wrapT = 1000;
-      texture.repeat.set(1, 1);
-      texture.offset.setX(0.5);
-    });
+    texture.colorSpace = THREE.SRGBColorSpace;
+    texture.needsUpdate = true;
+    texture.wrapS = 1000;
+    texture.wrapT = 1000;
+    texture.repeat.set(1, 1);
+    texture.offset.setX(0.5);
+  }, [texture]);
 
-    texture.flipY = false;
+  texture.flipY = false;
+  
+  useEffect(() => {
 
     const frontMaterial = new THREE.MeshStandardMaterial({
       map: texture,
