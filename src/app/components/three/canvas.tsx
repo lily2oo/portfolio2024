@@ -57,7 +57,7 @@ const Scene2 = ({ scrollPosition }: scrollProps) => {
   return (
     <Canvas className={styles.canvas} camera={{ position: [0, 0, 2] }}>
       <Ribbon2 scrollPosition={scrollPosition} />
-      <pointLight color={0xffffff} intensity={1.0} position={[2.7, 0, 0]} />
+      <pointLight color={0xffffff} intensity={1.0} position={[3.5, 0, 0]} />
       <ambientLight color={0xffffff} intensity={0.5} />
     </Canvas>
   );
