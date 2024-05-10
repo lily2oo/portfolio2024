@@ -1,12 +1,10 @@
 "use client";
-import { OrbitControls, Sky } from "@react-three/drei";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import styles from "../../page.module.css";
-import { use, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import * as THREE from "three";
 import Ribbon from "./ribbon";
 import Ribbon2 from "./ribbon2";
-import { threshold } from "three/examples/jsm/nodes/Nodes.js";
 
 interface scrollProps {
   scrollPosition: number;
@@ -17,35 +15,10 @@ interface transitionProps {
   isActive: boolean;
 }
 
-const Transition = ({ children, isActive }: transitionProps) => {
-  const [opacity, setOpacity] = useState(isActive ? 1 : 0);
-
-  useEffect(() => {
-    if (isActive) {
-      setOpacity(1);
-    } else {
-      const timeout = setTimeout(() => setOpacity(0), 500);
-      return () => clearTimeout(timeout);
-    }
-  }, [isActive]);
-
-  return (
-    <div
-      className={styles.transition}
-      style={{
-        opacity,
-        transition: "opacity 0.5s ease-in-out",
-        pointerEvents: isActive ? "auto" : "none",
-      }}
-    >
-      {children}
-    </div>
-  );
-};
 
 const Scene1 = ({ scrollPosition }: scrollProps) => {
   return (
-    <Canvas className={styles.canvas} camera={{ position: [0, 0, 2] }}>
+    <Canvas className={styles.canvas}>
       <Ribbon scrollPosition={scrollPosition} />
       <ambientLight color={0xffffff} intensity={0.5} />
       <directionalLight color={0xffffff} intensity={0.5} position={[0, 0, 5]} />
@@ -58,7 +31,7 @@ const Scene2 = ({ scrollPosition }: scrollProps) => {
     <Canvas className={styles.canvas} camera={{ position: [0, 0, 2] }}>
       <Ribbon2 scrollPosition={scrollPosition} />
       <pointLight color={0xffffff} intensity={1.0} position={[3.5, 0, 0]} />
-      <ambientLight color={0xffffff} intensity={0.5} />
+      <ambientLight color={0xffffff} intensity={1.0} />
     </Canvas>
   );
 };
@@ -72,7 +45,7 @@ const ScrollHandler = ({ scrollPosition }: scrollProps) => {
   }, []);
 
   useEffect(() => {
-    if (scrollPosition < threshold*0.8) {
+    if (scrollPosition < threshold * 0.8) {
       setCurrentScene("scene1");
     } else {
       setCurrentScene("scene2");
@@ -81,12 +54,8 @@ const ScrollHandler = ({ scrollPosition }: scrollProps) => {
 
   return (
     <>
-      <Transition isActive={currentScene === "scene1"}>
-        <Scene1 scrollPosition={scrollPosition} />
-      </Transition>
-      <Transition isActive={currentScene === "scene2"}>
-        <Scene2 scrollPosition={scrollPosition} />
-      </Transition>
+      {currentScene === "scene1" && <Scene1 scrollPosition={scrollPosition} />}
+      {currentScene === "scene2" && <Scene2 scrollPosition={scrollPosition} />}
     </>
   );
 };

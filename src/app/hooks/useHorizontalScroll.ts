@@ -122,11 +122,8 @@ export default function useHorizontalScroll(
         if (Date.now() - lastScrollTime > 10 && isScrollFinished < 0.1) {
           cancelAnimationFrame(animationFrameId!);
           animationFrameId = null;
-          console.log("cancel");
         } else {
           animationFrameId = requestAnimationFrame(updateScroll);
-          console.log("request");
-          console.log(deltaY);
         }
       }
     };

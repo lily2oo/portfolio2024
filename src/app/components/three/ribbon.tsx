@@ -1,14 +1,13 @@
 "use client";
-import { OrbitControls, Sky, CatmullRomLine } from "@react-three/drei";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { useFrame} from "@react-three/fiber";
 import { useState, useEffect, useRef } from "react";
 import * as THREE from "three";
 
 interface Props {
-  scrollPosition:number;
+  scrollPosition: number;
 }
 
-const Ribbon = ({scrollPosition}:Props) => {
+const Ribbon = ({ scrollPosition }: Props) => {
   const [curvePoints, setCurvePoints] = useState<THREE.Vector3[]>(() => {
     const num = 8;
     const initialCurvePoints = [];
@@ -99,9 +98,9 @@ const Ribbon = ({scrollPosition}:Props) => {
     ref.current!.material = materials;
   }, [curvePoints]);
 
-
   useFrame((state) => {
-    const { pointer, camera } = state;
+    const { pointer,camera } = state;
+    console.log(pointer.x, pointer.y);
     timeRef.current += 0.001;
     const materials = Array.isArray(ref.current!.material)
       ? ref.current!.material
@@ -127,30 +126,22 @@ const Ribbon = ({scrollPosition}:Props) => {
       0,
       0
     );
-    camera.position.copy(cameraPosition)  ;
+    camera.position.copy(cameraPosition);
+    const targetCameraPositionY = THREE.MathUtils.mapLinear(
+      pointer.y,
+      -0.5,
+      0.5,
+      -5,
+      5
+    );
+    camera.position.y += (targetCameraPositionY - camera.position.y) * 0.05;
     camera.position.z = 2;
     camera.updateProjectionMatrix();
   });
-  
+
   return (
     <>
       <mesh ref={ref} position={[0, 0, 0]}></mesh>
-      {/* <mesh position={[0, 0, 0]}>
-        <sphereGeometry args={[1, 30, 30]} />
-        <meshNormalMaterial wireframe />
-      </mesh> */}
-      {/* {curvePoints.length > 0 ? (
-        <CatmullRomLine
-          //   ref={lineRef}
-          points={curvePoints}
-          closed={true}
-          curveType="centripetal"
-          tension={0.3}
-          color="black"
-          lineWidth={0}
-          dashed={false}
-        />
-      ) : null} */}
     </>
   );
 };
