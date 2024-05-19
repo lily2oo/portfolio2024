@@ -5,18 +5,13 @@ import { useEffect, useState } from "react";
 import * as THREE from "three";
 import Ribbon from "./ribbon";
 import Ribbon2 from "./ribbon2";
+import { usePathname } from "next/navigation";
 
 interface scrollProps {
   scrollPosition: number;
 }
 
-interface transitionProps {
-  children: React.ReactNode;
-  isActive: boolean;
-}
-
-
-const Scene1 = ({ scrollPosition }: scrollProps) => {
+const Top1 = ({ scrollPosition }: scrollProps) => {
   return (
     <Canvas className={styles.canvas}>
       <Ribbon scrollPosition={scrollPosition} />
@@ -26,7 +21,7 @@ const Scene1 = ({ scrollPosition }: scrollProps) => {
   );
 };
 
-const Scene2 = ({ scrollPosition }: scrollProps) => {
+const Top2 = ({ scrollPosition }: scrollProps) => {
   return (
     <Canvas className={styles.canvas} camera={{ position: [0, 0, 2] }}>
       <Ribbon2 scrollPosition={scrollPosition} />
@@ -37,7 +32,8 @@ const Scene2 = ({ scrollPosition }: scrollProps) => {
 };
 
 const ScrollHandler = ({ scrollPosition }: scrollProps) => {
-  const [currentScene, setCurrentScene] = useState("scene1");
+  const router = usePathname();
+  const [currentScene, setCurrentScene] = useState("");
   const [threshold, setThreshold] = useState(0);
 
   useEffect(() => {
@@ -45,17 +41,20 @@ const ScrollHandler = ({ scrollPosition }: scrollProps) => {
   }, []);
 
   useEffect(() => {
-    if (scrollPosition < threshold * 0.8) {
-      setCurrentScene("scene1");
-    } else {
-      setCurrentScene("scene2");
+    if (router === "/") {
+      if (scrollPosition < threshold * 0.8) {
+        setCurrentScene("Top1");
+      } else {
+        setCurrentScene("Top2");
+      }
+    } else if (router === "/about") {
     }
-  }, [scrollPosition, threshold]);
+  }, [scrollPosition, threshold, router]);
 
   return (
     <>
-      {currentScene === "scene1" && <Scene1 scrollPosition={scrollPosition} />}
-      {currentScene === "scene2" && <Scene2 scrollPosition={scrollPosition} />}
+      {currentScene === "Top1" && <Top1 scrollPosition={scrollPosition} />}
+      {currentScene === "Top2" && <Top2 scrollPosition={scrollPosition} />}
     </>
   );
 };

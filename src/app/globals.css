@@ -7,7 +7,10 @@
 :root {
   --fontplus-font-family: "TsukuGoPr5-R-AvenirNextLTPro-Regular", sans-serif;
   --color--black: #424446;
-  --color--blue: #c4ecdb;
+  --color--blue: #007fff;
+  --color--white: #ffffff;
+  --color--green: #c4ecdb;
+  --color--grey: #ced9d9;
   -webkit-font-smoothing: antialiased;
 }
 

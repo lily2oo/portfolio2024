@@ -26,6 +26,8 @@ const Ribbon = ({ scrollPosition }: Props) => {
 
   const ref = useRef<THREE.Mesh>(null);
   const timeRef = useRef(0);
+  const pointerRef = useRef<THREE.Vector2 | null>(new THREE.Vector2(0, 0));
+  const lastPointerMoveTimeRef = useRef(Date.now());
 
   useEffect(() => {
     const frontTexture = new THREE.TextureLoader().load("/front.webp", () => {
@@ -96,11 +98,42 @@ const Ribbon = ({ scrollPosition }: Props) => {
 
     ref.current!.geometry = tempPlane;
     ref.current!.material = materials;
+
+    const handlePointerEvent = (event: PointerEvent) => {
+      if (event.target instanceof HTMLElement) {
+        const rect = event.target.getBoundingClientRect();
+        const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+        const y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+        pointerRef.current = new THREE.Vector2(x, y);
+        lastPointerMoveTimeRef.current = Date.now();
+        console.log(pointerRef.current!.x, pointerRef.current!.y);
+      }
+    };
+
+    let animationFrameId: number | null = null;
+
+    const updatePointer = () => {
+      if (Date.now() - lastPointerMoveTimeRef.current > 100) {
+        cancelAnimationFrame(animationFrameId!);
+        animationFrameId = null;
+      } else {
+        animationFrameId = requestAnimationFrame(updatePointer);
+      }
+    };
+
+    window.addEventListener('pointermove', handlePointerEvent);
+    animationFrameId = requestAnimationFrame(updatePointer);
+
+    return () => {
+      window.removeEventListener('pointermove', handlePointerEvent);
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
   }, [curvePoints]);
 
   useFrame((state) => {
-    const { pointer,camera } = state;
-    console.log(pointer.x, pointer.y);
+    const { camera } = state;
     timeRef.current += 0.001;
     const materials = Array.isArray(ref.current!.material)
       ? ref.current!.material
@@ -128,7 +161,7 @@ const Ribbon = ({ scrollPosition }: Props) => {
     );
     camera.position.copy(cameraPosition);
     const targetCameraPositionY = THREE.MathUtils.mapLinear(
-      pointer.y,
+      pointerRef.current!.y,
       -0.5,
       0.5,
       -5,

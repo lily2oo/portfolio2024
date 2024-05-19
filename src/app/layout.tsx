@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import FontplusLoader from "./components/fontplusLoader";
+import Scroll from "./components/scroll";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,7 +18,9 @@ export default function RootLayout({
       <head>
         <FontplusLoader />
       </head>
-      <body>{children}</body>
+      <body>
+        <Scroll>{children}</Scroll>
+      </body>
     </html>
   );
 }
