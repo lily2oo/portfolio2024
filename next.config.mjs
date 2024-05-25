@@ -5,8 +5,11 @@ const nextConfig = {
         config.module.rules.push({
           test: /\.(glsl|vs|fs)$/,
           loader: 'ts-shader-loader',
-        });
-    
+        })
+        config.module.rules.push({
+          test: /\.svg$/,
+          use: [{ loader: '@svgr/webpack', options: { dimensions: false } }],
+        })
         return config;
       },
 };

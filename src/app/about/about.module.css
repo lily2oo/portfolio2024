@@ -1,0 +1,178 @@
+.header {
+  background: linear-gradient(#cedddd, #ebefef);
+  position: relative;
+  width: 100vw;
+  .sealContainer {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    width: auto;
+    display: inline-block;
+    .seal1 {
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(50%, -50%) rotate(4deg);
+      z-index: 1;
+    }
+    .seal2 {
+      position: absolute;
+      top: 20%;
+      left: 0;
+      transform: translate(-100%, 0) rotate(-32deg);
+      z-index: 1;
+    }
+    .seal3 {
+      position: absolute;
+      top: 30%;
+      left: 0%;
+      transform: translate(-100%, 0) rotate(-52deg);
+      z-index: 1;
+    }
+    .seal4 {
+      position: absolute;
+      top: 40%;
+      right: -10%;
+      transform: translate(50%, 0) rotate(40deg);
+      z-index: 1;
+    }
+  }
+  .name {
+    width: 90%;
+    position: absolute;
+    left: 50%;
+    bottom: -7%;
+    transform: translate(-50%, 0%);
+  }
+}
+
+.intro {
+  width: auto;
+  height: 100%;
+  max-height: 1000px;
+  padding: min(10vh, 80px) 100px;
+  margin: auto 0;
+  display: flex;
+  gap: 120px;
+  .nameContainer {
+    height: 100%;
+    position: relative;
+    border-left: 1px solid #cedddd;
+    padding: 0 0 max(4vh, 24px) 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: flex-start;
+    &::after {
+      content: "";
+      display: block;
+      width: 549px;
+      height: 0;
+      border-bottom: 1px solid #cedddd;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    &::before {
+      content: "";
+      display: block;
+      width: 101px;
+      height: 0;
+      border-bottom: 1px solid #cedddd;
+      position: absolute;
+      bottom: 0px;
+      left: -101px;
+    }
+    .line {
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translate(0, -50%);
+    }
+    .desc {
+      width: 408px;
+      text-align: justify;
+      font-size: 16px;
+      line-height: 1.7em;
+      margin-bottom: 48px;
+    }
+    .caption {
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+    .nameEn {
+      font-size: 48px;
+      line-height: 1em;
+      margin-bottom: 6px;
+      transform: translate(-3px,0);
+    }
+    .name {
+      font-size: 20px;
+      line-height: 1em;
+    }
+  }
+  .positionContainer {
+    height: 100%;
+    transform: translate(0, -8px);
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 92px;
+    .hContainer {
+      position: relative;
+      .headingEn {
+        font-size: 24px;
+        line-height: 1em;
+        color: var(--color--grey);
+        position: absolute;
+        top: -6px;
+        left: 0;
+        transform: translate(0, -100%);
+      }
+      .heading {
+        font-size: 16px;
+        line-height: 1em;
+        white-space: nowrap;
+      }
+    }
+    .flex {
+      height: 100%;
+      max-height: 700px;
+      padding-bottom: max(4vh, 24px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      /* justify-content: flex-start;
+      gap: min(10vh, 48px); */
+      .position {
+        display: inline;
+        .titleContainer {
+          position: relative;
+          .svg{
+            width: 14px;
+            position: absolute;
+            top: -2px;
+            left: -24px;
+          }
+          .title {
+            display: inline-block;
+            font-size: 20px;
+            transform: translate(0,-4px);
+            line-height: 1em;
+            color: var(--color--green);
+            margin-bottom: 4px;
+          }
+        }
+        .caption {
+          width: 288px;
+          font-size: 14px;
+          line-height: 1.5em;
+          text-wrap: nowrap;
+        }
+      }
+    }
+  }
+}

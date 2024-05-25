@@ -31,7 +31,7 @@ const Ribbon2 = ({ scrollPosition }: Props) => {
   const timeRef = useRef(0);
   const { size, scene } = useThree();
 
-  const texture = useTexture("/ribbon.webp");
+  const texture = useTexture("/top/ribbon.webp");
 
   useEffect(() => {
     texture.colorSpace = THREE.SRGBColorSpace;

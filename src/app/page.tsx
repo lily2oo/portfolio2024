@@ -18,7 +18,7 @@ export default function Home() {
         <div className={styles.absoluteArea}>
           <div className={styles.flex}>
             <Image
-              src="/me.webp"
+              src="/top/me.webp"
               alt={""}
               height={450}
               width={300}

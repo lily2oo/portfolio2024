@@ -30,13 +30,13 @@ const Ribbon = ({ scrollPosition }: Props) => {
   const lastPointerMoveTimeRef = useRef(Date.now());
 
   useEffect(() => {
-    const frontTexture = new THREE.TextureLoader().load("/front.webp", () => {
+    const frontTexture = new THREE.TextureLoader().load("/top/front.webp", () => {
       frontTexture.wrapS = 1000;
       frontTexture.wrapT = 1000;
       frontTexture.repeat.set(1, 1);
       frontTexture.offset.setX(0.5);
     });
-    const backTexture = new THREE.TextureLoader().load("/back.webp", () => {
+    const backTexture = new THREE.TextureLoader().load("/top/back.webp", () => {
       backTexture.wrapS = 1000;
       backTexture.wrapT = 1000;
       backTexture.repeat.set(1, 1);
