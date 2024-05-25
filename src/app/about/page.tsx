@@ -151,7 +151,7 @@ const About = () => {
               />
             </div>
             <div className={styles.position}>
-            <div className={styles.titleContainer}>
+              <div className={styles.titleContainer}>
                 <div className={styles.svg}>
                   <svg
                     viewBox="0 0 16 16"
@@ -183,7 +183,7 @@ const About = () => {
               />
             </div>
             <div className={styles.position}>
-            <div className={styles.titleContainer}>
+              <div className={styles.titleContainer}>
                 <div className={styles.svg}>
                   <svg
                     viewBox="0 0 16 16"
@@ -212,6 +212,79 @@ const About = () => {
                 style={{ display: "block" }}
               />
             </div>
+          </div>
+        </div>
+      </section>
+      <section className={styles.carrer}>
+        <div className={styles.line}>
+          <div className={styles.flex}>
+            <div className={styles.relative}>
+              <div className={styles.rect}></div>
+              <div className={styles.textContainer}>
+                <p className={styles.year}>2024</p>
+              </div>
+            </div>
+            <div className={styles.relative}>
+              <div className={styles.rect}></div>
+              <div className={styles.textContainer}>
+                <p className={styles.year}>2023</p>
+              </div>
+            </div>
+            <div className={styles.relative}>
+              <div className={styles.rect}></div>
+              <div className={styles.textContainer}>
+                <p className={styles.year}>2022</p>
+              </div>
+            </div>
+            <div className={styles.relative}>
+              <div className={styles.rect}></div>
+              <div className={styles.textContainer}>
+                <p className={styles.text}>デジハリ入学</p>
+                <p className={styles.year}>2021</p>
+              </div>
+            </div>
+            <div className={styles.relative}>
+              <div className={styles.rect}></div>
+              <div className={styles.textContainer}>
+                <p className={styles.text}>浪人</p>
+                <p className={styles.year}>2020</p>
+              </div>
+            </div>
+          </div>
+          <div className={`${styles.workplace} ${styles.workplace1}`}>
+            <div className={styles.jobContainer}>
+              <a className={styles.place}>Baton</a>
+              <p className={styles.job}>AI調査&amp;開発業務</p>
+            </div>
+            <p className={styles.period}>2024.01 - now</p>
+          </div>
+          <div className={`${styles.workplace} ${styles.workplace2}`}>
+            <div className={styles.jobContainer}>
+              <a className={styles.place}>Uzabase</a>
+              <p className={styles.job}>UIデザイナー</p>
+            </div>
+            <p className={styles.period}>2023.08(2days) / 2023.11 - 2024.03</p>
+          </div>
+          <div className={`${styles.workplace} ${styles.workplace3}`}>
+            <div className={styles.jobContainer}>
+              <a className={styles.place}>おててさっか</a>
+              <p className={styles.job}>イベント設立</p>
+            </div>
+            <p className={styles.period}>2022.01 - now</p>
+          </div>
+          <div className={`${styles.workplace} ${styles.workplace4}`}>
+            <div className={styles.jobContainer}>
+              <a className={styles.place}>Life is Tech!</a>
+              <p className={styles.job}>メンター</p>
+            </div>
+            <p className={styles.period}>2021.04 - now</p>
+          </div>
+          <div className={`${styles.workplace} ${styles.workplace5}`}>
+            <div className={styles.jobContainer}>
+              <a className={styles.place}>HALLO</a>
+              <p className={styles.job}>アルバイト</p>
+            </div>
+            <p className={styles.period}>2020.05 - 2021.05</p>
           </div>
         </div>
       </section>
