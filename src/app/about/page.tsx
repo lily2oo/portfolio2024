@@ -2,8 +2,33 @@
 import "../globals.css";
 import styles from "./about.module.css";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 const About = () => {
+  const [visibleQuestionIndex, setVisibleQuestionIndex] = useState<
+    number | null
+  >(null);
+  const toggleAnswerVisibility = (index: number) => {
+    setVisibleQuestionIndex(visibleQuestionIndex === index ? null : index);
+  };
+
+  useEffect(() => {
+    console.log(visibleQuestionIndex);
+  }, [visibleQuestionIndex]);
+  const questions = [
+    "自分のスキルと経験をどう思う？",
+    "インターンして良かったことは？",
+    "デザインを選んだ理由は？",
+    "夢はありますか？",
+  ];
+
+  const answers = [
+    "迷う様は、学生らしく、そして自分らしいと思います。\n迷って、可能性を潰していったからこそ、今デザインが良い、と心から言えます。\n後悔も当然あります。特化型の人に劣る瞬間があるからです。でも、良いんです。\nポケモンでも最初の1匹(ぼくはヒコザル)特化で育てた方が攻略は早いけど、\nそれだけが遊び方じゃない。僕の人生の遊び方は、僕が決めます。",
+    "大海を知れたことです。\nあとは、特に教育業的な立場を知れたのは良い経験だったと思います。\n「なんとなく」でもできちゃうことを、ちゃんと教えるベースで学ぶ。\n自分なりに噛み砕くみたいな思考が身についたことは収穫でした。\n新しいことを習得するスキルには自信があります。",
+    "「ついついとやってしまう」のは、デザインだったからです。\n一番没頭することができるのも、デザインでした。\nまた、全部のクリエイティブに共通する根幹の技術だと感じたからです。\nデザインがなくちゃ、映像もコピーもCGもコーディングも魅力的にならない。\nだからデザインです。",
+    "最近、夢のような、目標なような、そんなものができました。\nたくさん仕事をして、経験を積んで、\n手の届く人の幸せのためにそれを使っていきたいです。。\n具体的には、住んできた三鷹のちょっとくすんだ商店街を、\n自分のデザインで明るくする。\nそんなことができたら本当に最高だなって思います。",
+  ];
+
   return (
     <>
       <section className={styles.header}>
@@ -223,17 +248,58 @@ const About = () => {
               <div className={styles.textContainer}>
                 <p className={styles.year}>2024</p>
               </div>
+              <div className={`${styles.workplace} ${styles.workplace1}`}>
+                <div className={styles.jobContainer}>
+                  <a
+                    className={styles.place}
+                    href="https://baton8.com/"
+                    target="_blank"
+                  >
+                    Baton
+                  </a>
+                  <p className={styles.job}>AI調査&amp;開発業務</p>
+                </div>
+                <p className={styles.period}>2024.01 - now</p>
+              </div>
             </div>
             <div className={styles.relative}>
               <div className={styles.rect}></div>
               <div className={styles.textContainer}>
                 <p className={styles.year}>2023</p>
               </div>
+              <div className={`${styles.workplace} ${styles.workplace2}`}>
+                <div className={styles.jobContainer}>
+                  <a
+                    className={styles.place}
+                    href="https://www.uzabase.com/jp/"
+                    target="_blank"
+                  >
+                    Uzabase
+                  </a>
+                  <p className={styles.job}>UIデザイナー</p>
+                </div>
+                <p className={styles.period}>
+                  2023.08(2days) / 2023.11 - 2024.03
+                </p>
+              </div>
             </div>
             <div className={styles.relative}>
               <div className={styles.rect}></div>
               <div className={styles.textContainer}>
                 <p className={styles.year}>2022</p>
+              </div>
+              <div className={`${styles.workplace} ${styles.workplace3}`}>
+                <div className={styles.jobContainer}>
+                  <a
+                    className={styles.place}
+                    href="https://corp.otetesakka.com/"
+                    target="_blank"
+                  >
+                    おててさっか
+                  </a>
+                  <p className={styles.job}>イベント設立</p>
+                </div>
+                <p className={styles.period}>2022.01 - now</p>
               </div>
             </div>
             <div className={styles.relative}>
@@ -242,6 +308,19 @@ const About = () => {
                 <p className={styles.text}>デジハリ入学</p>
                 <p className={styles.year}>2021</p>
               </div>
+              <div className={`${styles.workplace} ${styles.workplace4}`}>
+                <div className={styles.jobContainer}>
+                  <a
+                    className={styles.place}
+                    href="https://life-is-tech.com/"
+                    target="_blank"
+                  >
+                    Life is Tech!
+                  </a>
+                  <p className={styles.job}>メンター</p>
+                </div>
+                <p className={styles.period}>2021.04 - now</p>
+              </div>
             </div>
             <div className={styles.relative}>
               <div className={styles.rect}></div>
@@ -249,43 +328,197 @@ const About = () => {
                 <p className={styles.text}>浪人</p>
                 <p className={styles.year}>2020</p>
               </div>
+              <div className={`${styles.workplace} ${styles.workplace5}`}>
+                <div className={styles.jobContainer}>
+                  <a
+                    className={styles.place}
+                    href="https://www.hallo.jp/"
+                    target="_blank"
+                  >
+                    HALLO
+                  </a>
+                  <p className={styles.job}>アルバイト</p>
+                </div>
+                <p className={styles.period}>2020.05 - 2021.05</p>
+              </div>
             </div>
           </div>
-          <div className={`${styles.workplace} ${styles.workplace1}`}>
-            <div className={styles.jobContainer}>
-              <a className={styles.place}>Baton</a>
-              <p className={styles.job}>AI調査&amp;開発業務</p>
+        </div>
+      </section>
+      <section className={styles.skills}>
+        <div className={styles.hContainer}>
+          <p className={styles.heading}>
+            気づいたら
+            <br />
+            なんでも屋さんでした。
+          </p>
+          <h3 className={styles.headingEn}>Skills</h3>
+        </div>
+        <div className={styles.skillsContainer}>
+          <div className={styles.skill}>
+            <div className={styles.relative}>
+              <h4 className={styles.title}>Design</h4>
+              <div className={styles.svg}>
+                <svg
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M13.4139 12.8976L11.0063 9.67952L15.0243 10.2781L15.4316 7.66096L11.4111 7.06241L14.6878 4.69248L13.0951 2.56245L9.81831 4.93239L10.4317 0.980073L7.76944 0.585083L7.15607 4.5374L4.74844 1.31933L2.57956 2.88717L4.98719 6.10524L0.966703 5.50669L0.561921 8.12138L4.5824 8.72234L1.30565 11.0923L2.89842 13.2223L6.17518 10.8499L5.56182 14.8023L8.2216 15.1997L8.83743 11.2474L11.2451 14.4654L13.4139 12.8976Z"
+                    fill="#C4ECDB"
+                  />
+                </svg>
+              </div>
             </div>
-            <p className={styles.period}>2024.01 - now</p>
+            <p className={styles.desc}>
+              Adobe Illustrator, Photoshop, Lightroom
+              <br />
+              Figma
+            </p>
           </div>
-          <div className={`${styles.workplace} ${styles.workplace2}`}>
-            <div className={styles.jobContainer}>
-              <a className={styles.place}>Uzabase</a>
-              <p className={styles.job}>UIデザイナー</p>
+          <div className={styles.skill}>
+            <div className={styles.relative}>
+              <h4 className={styles.title}>Engineering</h4>
+              <div className={styles.svg}>
+                <svg
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M13.4139 12.8976L11.0063 9.67952L15.0243 10.2781L15.4316 7.66096L11.4111 7.06241L14.6878 4.69248L13.0951 2.56245L9.81831 4.93239L10.4317 0.980073L7.76944 0.585083L7.15607 4.5374L4.74844 1.31933L2.57956 2.88717L4.98719 6.10524L0.966703 5.50669L0.561921 8.12138L4.5824 8.72234L1.30565 11.0923L2.89842 13.2223L6.17518 10.8499L5.56182 14.8023L8.2216 15.1997L8.83743 11.2474L11.2451 14.4654L13.4139 12.8976Z"
+                    fill="#C4ECDB"
+                  />
+                </svg>
+              </div>
             </div>
-            <p className={styles.period}>2023.08(2days) / 2023.11 - 2024.03</p>
+            <p className={styles.desc}>
+              Frontend (Next.js, Typescript, Emotion etc... )<br />
+              Backend (PHP, Next.js+Typescript)
+              <br />
+              App (Flutter)
+            </p>
           </div>
-          <div className={`${styles.workplace} ${styles.workplace3}`}>
-            <div className={styles.jobContainer}>
-              <a className={styles.place}>おててさっか</a>
-              <p className={styles.job}>イベント設立</p>
+          <div className={styles.skill}>
+            <div className={styles.relative}>
+              <h4 className={styles.title}>Movie</h4>
+              <div className={styles.svg}>
+                <svg
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M13.4139 12.8976L11.0063 9.67952L15.0243 10.2781L15.4316 7.66096L11.4111 7.06241L14.6878 4.69248L13.0951 2.56245L9.81831 4.93239L10.4317 0.980073L7.76944 0.585083L7.15607 4.5374L4.74844 1.31933L2.57956 2.88717L4.98719 6.10524L0.966703 5.50669L0.561921 8.12138L4.5824 8.72234L1.30565 11.0923L2.89842 13.2223L6.17518 10.8499L5.56182 14.8023L8.2216 15.1997L8.83743 11.2474L11.2451 14.4654L13.4139 12.8976Z"
+                    fill="#C4ECDB"
+                  />
+                </svg>
+              </div>
             </div>
-            <p className={styles.period}>2022.01 - now</p>
+            <p className={styles.desc}>
+              Adobe AfterEffects, PremierePro
+              <br />
+              DaVinci Resolve
+            </p>
           </div>
-          <div className={`${styles.workplace} ${styles.workplace4}`}>
-            <div className={styles.jobContainer}>
-              <a className={styles.place}>Life is Tech!</a>
-              <p className={styles.job}>メンター</p>
+          <div className={styles.skill}>
+            <div className={styles.relative}>
+              <h4 className={styles.title}>3DCG</h4>
+              <div className={styles.svg}>
+                <svg
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M13.4139 12.8976L11.0063 9.67952L15.0243 10.2781L15.4316 7.66096L11.4111 7.06241L14.6878 4.69248L13.0951 2.56245L9.81831 4.93239L10.4317 0.980073L7.76944 0.585083L7.15607 4.5374L4.74844 1.31933L2.57956 2.88717L4.98719 6.10524L0.966703 5.50669L0.561921 8.12138L4.5824 8.72234L1.30565 11.0923L2.89842 13.2223L6.17518 10.8499L5.56182 14.8023L8.2216 15.1997L8.83743 11.2474L11.2451 14.4654L13.4139 12.8976Z"
+                    fill="#C4ECDB"
+                  />
+                </svg>
+              </div>
             </div>
-            <p className={styles.period}>2021.04 - now</p>
+            <p className={styles.desc}>Blender</p>
           </div>
-          <div className={`${styles.workplace} ${styles.workplace5}`}>
-            <div className={styles.jobContainer}>
-              <a className={styles.place}>HALLO</a>
-              <p className={styles.job}>アルバイト</p>
+          <div className={styles.skill}>
+            <div className={styles.relative}>
+              <h4 className={styles.title}>Writing</h4>
+              <div className={styles.svg}>
+                <svg
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M13.4139 12.8976L11.0063 9.67952L15.0243 10.2781L15.4316 7.66096L11.4111 7.06241L14.6878 4.69248L13.0951 2.56245L9.81831 4.93239L10.4317 0.980073L7.76944 0.585083L7.15607 4.5374L4.74844 1.31933L2.57956 2.88717L4.98719 6.10524L0.966703 5.50669L0.561921 8.12138L4.5824 8.72234L1.30565 11.0923L2.89842 13.2223L6.17518 10.8499L5.56182 14.8023L8.2216 15.1997L8.83743 11.2474L11.2451 14.4654L13.4139 12.8976Z"
+                    fill="#C4ECDB"
+                  />
+                </svg>
+              </div>
             </div>
-            <p className={styles.period}>2020.05 - 2021.05</p>
+            <p className={styles.desc}>Copy Writing, Novel, Scenario</p>
           </div>
+          <div className={styles.skill}>
+            <div className={styles.relative}>
+              <h4 className={styles.title}>Planning</h4>
+              <div className={styles.svg}>
+                <svg
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M13.4139 12.8976L11.0063 9.67952L15.0243 10.2781L15.4316 7.66096L11.4111 7.06241L14.6878 4.69248L13.0951 2.56245L9.81831 4.93239L10.4317 0.980073L7.76944 0.585083L7.15607 4.5374L4.74844 1.31933L2.57956 2.88717L4.98719 6.10524L0.966703 5.50669L0.561921 8.12138L4.5824 8.72234L1.30565 11.0923L2.89842 13.2223L6.17518 10.8499L5.56182 14.8023L8.2216 15.1997L8.83743 11.2474L11.2451 14.4654L13.4139 12.8976Z"
+                    fill="#C4ECDB"
+                  />
+                </svg>
+              </div>
+            </div>
+            <p className={styles.desc}>
+              Event Planning, Presentation, Advertising
+            </p>
+          </div>
+        </div>
+      </section>
+      <section className={styles.qa}>
+        <div className={styles.qaContainer}>
+          <h3 className={styles.headingEn}>Q&A</h3>
+          {questions.map((question, index) => (
+            <div
+              className={`${styles.qaContent} ${
+                visibleQuestionIndex === index ? styles.wide : null
+              }`}
+              onMouseEnter={() => {
+                toggleAnswerVisibility(index);
+              }}
+              onMouseLeave={() => {
+                toggleAnswerVisibility(index);
+              }}
+              key={index}
+            >
+              <h4 className={styles.title}>
+                <p className={styles.question}>{question}</p>
+                <div className={styles.button}>
+                  {visibleQuestionIndex === index ? "-" : "+"}
+                </div>
+              </h4>
+              <div
+                className={`${styles.answer} ${
+                  visibleQuestionIndex === index ? styles.visible : null
+                }`}
+              >
+                {answers[index].split("\n").map((line, index) => (
+                  <p key={index}>{line}</p>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+      <section className={styles.future}>
+        <div className={styles.hContainer}>
+          <h3 className={styles.headingEn}>Future</h3>
+          <p className={styles.heading}>なりたいデザイナー像</p>
         </div>
       </section>
     </>

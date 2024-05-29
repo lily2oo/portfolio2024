@@ -182,28 +182,28 @@
   padding: 0 240px 0 200px;
   margin: 0 160px;
   position: relative;
-  &::before{
+  &::before {
     content: "";
     display: block;
     width: 0;
     height: 120vh;
     border-left: 50px solid;
     border-image: linear-gradient(#cedddd, #ebefef);
-    border-image-slice: 1; 
+    border-image-slice: 1;
     position: absolute;
     top: 50%;
     left: 0;
     transform: translate(0, -50%) rotate(-18deg);
     z-index: -1;
   }
-  &::after{
+  &::after {
     content: "";
     display: block;
     width: 0;
     height: 120vh;
     border-left: 50px solid;
     border-image: linear-gradient(#cedddd, #ebefef);
-    border-image-slice: 1; 
+    border-image-slice: 1;
     position: absolute;
     top: 50%;
     right: 0;
@@ -232,7 +232,7 @@
           height: 16px;
           background-color: var(--color--black);
         }
-        .textContainer{
+        .textContainer {
           position: absolute;
           top: 0;
           left: 0;
@@ -242,72 +242,240 @@
           gap: 12px;
           transform: rotate(-48deg) translate(-100%, 0);
           transform-origin: center left;
-          .text{}
-          .year{
+          .text {
+          }
+          .year {
             margin-right: 12px;
           }
         }
-      }
-      &::after{
-        content: "";
-        display: block;
-        width: 0;
-        height: 200vh;
-        border-left: 1px solid;
-        border-image: linear-gradient(#cedddd, #ebefef);
-        border-image-slice: 1; 
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: -1;
-      }
-    }
-    .workplace{
-      position: absolute;
-      transform: translate(-50%, -50%);
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      .jobContainer{
-        display: flex;
-        align-items: end;
-        gap: 8px;
-        .place{
-          font-size: 24px;
-          line-height: 1em;
-          color: var(--color--blue);
-          opacity: 70%;
-          text-decoration: underline;
+        .workplace {
+          text-wrap: nowrap;
+          position: absolute;
+          left: 0;
+          top: 0;
+          transform: rotate(-48deg) translate(96px, 0);
+          transform-origin: center left;
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+          .jobContainer {
+            display: flex;
+            align-items: end;
+            gap: 8px;
+            .place {
+              font-size: 24px;
+              line-height: 1em;
+              color: var(--color--blue);
+              opacity: 70%;
+              text-decoration: underline;
+            }
+            .job {
+              font-size: 16px;
+              line-height: 1em;
+            }
+          }
         }
-        .job{
-          font-size: 16px;
-          line-height: 1em;
+        &::after {
+          content: "";
+          display: block;
+          width: 0;
+          height: 200vh;
+          border-left: 1px solid;
+          border-image: linear-gradient(#cedddd, #ebefef);
+          border-image-slice: 1;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: -1;
         }
       }
-      .period{
+      .period {
         font-size: 14px;
       }
     }
-    .workplace1{
-      top: 20%;
-      left: 78%;
+  }
+}
+
+.skills {
+  width: auto;
+  height: 100%;
+  max-height: 1000px;
+  padding: min(10vh, 80px) 100px;
+  margin: auto 0px;
+  margin-left: 100px;
+  display: flex;
+  align-items: flex-end;
+  gap: 72px;
+  .hContainer {
+    position: relative;
+    &::before {
+      content: "";
+      display: block;
+      width: 128px;
+      height: 0;
+      border-bottom: 1px dashed #cedddd;
+      position: absolute;
+      transform: translate(-100%, -50%);
+      top: 50%;
+      left: -32px;
     }
-    .workplace2{
-      top: 34%;
-      left: 72%;
+    .headingEn {
+      font-size: 20px;
+      line-height: 1em;
+      color: var(--color--grey);
+      position: absolute;
+      transform: translate(0, 100%);
+      bottom: -8px;
+      left: 0;
     }
-    .workplace3{
-      top: 48%;
-      left: 63%;
+    .heading {
+      font-size: 16px;
+      line-height: 1.5em;
+      white-space: nowrap;
     }
-    .workplace4{
-      top: 62%;
-      left: 54%;
+  }
+  .skillsContainer {
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    text-wrap: nowrap;
+    .skill {
+      .relative {
+        position: relative;
+        margin-bottom: 4px;
+        .title {
+          font-size: 24px;
+          line-height: 1.5em;
+        }
+        .svg {
+          width: 14px;
+          position: absolute;
+          top: 50%;
+          transform: translate(0, -50%);
+          left: -24px;
+        }
+      }
+      .desc {
+        font-size: 16px;
+        line-height: 1.5em;
+      }
     }
-    .workplace5{
-      top: 76%;
-      left: 44%;
+  }
+}
+.qa {
+  width: auto;
+  max-height: 1000px;
+  padding: min(10vh, 80px) 200px;
+  margin: auto 0px;
+  .qaContainer {
+    position: relative;
+    height: 100%;
+    border-top: 1px solid #cedddd;
+    border-right: 1px solid #cedddd;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    &::before {
+      content: "";
+      display: block;
+      width: 128px;
+      height: 0;
+      border-bottom: 1px solid #cedddd;
+      position: absolute;
+      transform: translate(-100%, -100%);
+      top: 0;
+      left: 0;
+    }
+    &::after {
+      content: "";
+      display: block;
+      width: 128px;
+      height: 0;
+      border-bottom: 1px solid #cedddd;
+      position: absolute;
+      transform: translate(100%, 100%);
+      bottom: 0;
+      right: 0;
+    }
+    .headingEn {
+      font-size: 20px;
+      line-height: 1em;
+      color: var(--color--grey);
+      position: absolute;
+      transform: translate(0, -100%);
+      top: -8px;
+      left: 12px;
+    }
+    .qaContent {
+      width: 600px;
+      padding: 16px 16px 24px 16px;
+      border-bottom: 1px solid #424446;
+      transition: 0.5s ease-in-out;
+      .title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .question {
+          font-size: 20px;
+          line-height: 1.5em;
+        }
+        .button {
+        }
+      }
+      .answer {
+        font-size: 16px;
+        line-height: 1.7em;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+      }
+
+      .visible {
+        max-height: 500px;
+        opacity: 1;
+      }
+    }
+    .wide {
+      padding: 48px 16px 48px 16px;
+    }
+  }
+}
+
+.future {
+  width: auto;
+  max-height: 1000px;
+  padding: min(10vh, 80px) 200px;
+  margin: auto 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .hContainer {
+    position: relative;
+    &::before {
+      content: "";
+      display: block;
+      width: 128px;
+      height: 0;
+      border-bottom: 1px dashed #cedddd;
+      position: absolute;
+      transform: translate(-100%, -50%);
+      top: 50%;
+      left: -32px;
+    }
+    .headingEn {
+      font-size: 20px;
+      line-height: 1em;
+      color: var(--color--grey);
+      margin-bottom: 8px;
+    }
+    .heading {
+      font-size: 16px;
+      line-height: 1.5em;
+      white-space: nowrap;
     }
   }
 }
