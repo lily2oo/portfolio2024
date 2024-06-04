@@ -241,6 +241,7 @@ const About = () => {
         </div>
       </section>
       <section className={styles.carrer}>
+        <h3 className={styles.headingEn}>Career</h3>
         <div className={styles.line}>
           <div className={styles.flex}>
             <div className={styles.relative}>
@@ -520,6 +521,94 @@ const About = () => {
           <h3 className={styles.headingEn}>Future</h3>
           <p className={styles.heading}>なりたいデザイナー像</p>
         </div>
+        <div className={styles.container}>
+          <p className={styles.title}>自分へのあり方</p>
+          <div className={styles.policyContainer}>
+            <div className={styles.policy}>
+              <div className={styles.relative}>
+                <h4 className={styles.heading}>今</h4>
+                <p className={styles.number}>01.</p>
+              </div>
+              <p className={styles.desc}>
+                あれやらなきゃとか、あの人を超えたいとか
+                <br />
+                焦って未来を考えがちです。
+                <br />
+                だからこそ、意識して、今を大切にします。
+              </p>
+              <p className={styles.example}>ex. 瞑想、サウナ</p>
+            </div>
+            <div className={styles.policy}>
+              <div className={styles.relative}>
+                <h4 className={styles.heading}>健康</h4>
+                <p className={styles.number}>02.</p>
+              </div>
+              <p className={styles.desc}>
+                良いクリエイティブには栄養が必要です。
+                <br />
+                健康な体と生活習慣は、健康な精神を作ります。
+                <br />
+                健康性が、私のクリエイティブの栄養です。
+              </p>
+              <p className={styles.example}>
+                ex.ジム通い, 早寝早起き, 栄養的な食事
+              </p>
+            </div>
+            <div className={styles.policy}>
+              <div className={styles.relative}>
+                <h4 className={styles.heading}>Be enjoying.</h4>
+                <p className={styles.number}>03.</p>
+              </div>
+              <p className={styles.desc}>
+                楽しいは最高のモチベーションです。
+                <br />
+                そして楽しんでいる人は見ていて気持ちが良いものです。
+                <br />
+                自分と周りのために、まずは楽しんで仕事を行います。
+                <br />
+                というか勝手にもう楽しんでいます。
+              </p>
+              <p className={styles.example}>ex. ワクワクの赴くまま🏃‍♀️</p>
+            </div>
+          </div>
+        </div>
+        <div className={styles.container}>
+          <p className={styles.title}>他人へのあり方</p>
+          <div className={styles.policyContainer}>
+            <div className={styles.policy}>
+              <div className={styles.relative}>
+                <h4 className={styles.heading}>一緒に</h4>
+                <p className={styles.number}>01.</p>
+              </div>
+              <p className={styles.desc}>
+                仕事しよう！と言われるデザイナーを目指します。
+                <br />
+                仲間にも、クライアントにも。
+                <br />
+                謙虚に。
+              </p>
+            </div>
+            <div className={styles.policy}>
+              <div className={styles.relative}>
+                <h4 className={styles.heading}>当たり前のことを。</h4>
+                <p className={styles.number}>02.</p>
+              </div>
+              <p className={styles.desc}>
+                一緒に働いてくれる人に敬意を。
+                <br />
+                デザインができる環境に感謝を。
+                <br />
+                仕事を依頼してくれる人に恩返しを。
+                <br />
+                人を大切にすることを忘れないようにしたいです。
+                <br />
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className={styles.contact}>
+        <p className={styles.caption}>Work with Me!</p>
       </section>
     </>
   );

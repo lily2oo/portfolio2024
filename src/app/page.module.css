@@ -93,6 +93,7 @@
         display: inline-block;
         border-radius: 50px;
         font-size: 14px;
+        color: var(--color--black);
         padding: 2px 12px 6px;
         border: 1px solid var(--color--black);
       }

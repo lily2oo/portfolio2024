@@ -1,0 +1,49 @@
+.header {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .container {
+    .title {
+      display: inline-block;
+      font-size: 64px;
+      line-height: 1em;
+      text-transform: uppercase;
+    }
+    .name {
+      font-size: 16px;
+    }
+  }
+  .imageContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+    overflow: hidden;
+    .image {
+        width: 100%;
+        height: auto;
+      }
+  }
+  .flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: end;
+    gap: 12px;
+    .descContainer{
+        width: 350px;
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        font-size: 14px;
+        line-height: 1em;
+        .title{
+
+        }
+        .desc{
+
+        }
+    }
+  }
+}

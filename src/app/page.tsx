@@ -37,9 +37,9 @@ export default function Home() {
                 <br />
                 デザインや企画を主に、クリエイティブ全般を行っている。
               </p>
-              <div className={styles.button}>
-                <p>view more</p>
-              </div>
+              <a href="./about" className={styles.button}>
+                view more
+              </a>
             </div>
           </div>
         </div>
@@ -66,7 +66,7 @@ export default function Home() {
             <p className={styles.p}>企画・コピー</p>
           </div>
           <div className={styles.skill2}>
-            <h3 className={styles.h3}>Enginnering</h3>
+            <h3 className={styles.h3}>Engineering</h3>
             <p className={styles.p}>Next.js+TypeScipt</p>
             <p className={styles.p}>Three,R3f</p>
             <p className={styles.p}>Flutter</p>

@@ -55,12 +55,12 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a className={styles.link} href="">
+                <a className={`${styles.link} ${pathname === '/work1' ? styles.active : ''}`} href="/work1">
                   WORK1
                 </a>
               </li>
               <li>
-                <a className={styles.link} href="">
+              <a className={`${styles.link} ${pathname === '/work2' ? styles.active : ''}`} href="/work2">
                   WORK2
                 </a>
               </li>
