@@ -163,10 +163,39 @@
   }
 }
 
-.works {
+.work {
   width: 100vw;
   height: 100vh;
-  background-color: var(--color--black);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 200px;
+  /* background-color: var(--color--black); */
+  .content {
+    display: inline-block;
+    position: relative;
+    transition: 0.2s;
+    &:hover {
+      background-color: var(--color--blue);
+      .caption {
+        color: var(--color--grey);
+      }
+      .link {
+        color: var(--color--white);
+      }
+    }
+    .caption {
+      font-size: 24px;
+      line-height: 1.4em;
+      color: var(--color--black);
+    }
+    .link {
+      font-size: 48px;
+      line-height: 1.4em;
+      text-decoration: underline;
+      color: var(--color--blue);
+    }
+  }
 }
 
 .footer {
@@ -199,6 +228,10 @@
         .gmail {
           font-size: 20px;
           text-decoration: underline;
+          color: var(--color--black);
+          &:hover{
+            color: var(--color--blue);
+          }
         }
       }
       .snsContainer {
@@ -209,6 +242,9 @@
           font-size: 16px;
           text-decoration: underline;
           color: var(--color--black);
+          &:hover{
+            color: var(--color--blue);
+          }
         }
       }
     }
@@ -223,6 +259,9 @@
         font-size: 20px;
         line-height: 1em;
         color: var(--color--black);
+        &:hover{
+          color: var(--color--blue);
+        }
       }
       .active {
         text-decoration: underline;
@@ -230,29 +269,58 @@
     }
   }
 }
-
-.next {
-  width: 240px;
+.nextContainer {
+  display: block;
   height: 100%;
-  background-color: var(--color--black);
-  color: var(--color--white);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  .caption{
-    font-size: 14px;
-    line-height: 1em;
-    margin-bottom: 4px;
+  width: 240px;
+  &:hover {
+    .texts {
+      background-color: var(--color--blue);
+      transition: 0.2s;
+    }
   }
-  .link{
-    font-size: 28px;
-    line-height: 1em;
+  .next {
+    display: block;
+    height: 100%;
+    width: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    &.page {
+      background-image: url("/footer/about.png");
+      background-size: cover;
+      background-position: center center;
+    }
+    &.about {
+      background-image: url("/footer/work1.png");
+      background-size: cover;
+      background-position: center center;
+    }
+    &.work1 {
+      background-image: url("/footer/page.png");
+      background-size: cover;
+      background-position: center center;
+    }
+    .texts {
+      .caption {
+        font-size: 14px;
+        color: var(--color--white);
+        line-height: 1em;
+        margin-bottom: 4px;
+      }
+      .link {
+        text-transform: uppercase;
+        font-size: 28px;
+        color: var(--color--white);
+        line-height: 1em;
+      }
+    }
   }
-  
 }
 
 .canvasContainer {
-  pointer-events: none!important;
+  pointer-events: none !important;
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -262,7 +330,37 @@
 }
 
 .canvas {
-  pointer-events: none!important;
+  pointer-events: none !important;
   width: 100vw;
   height: 100vh;
+}
+
+.navButton {
+  position: fixed;
+  left: 3vw;
+  top: 3vw;
+  z-index: 100;
+  width: 32px;
+  height: 32px;
+  background-color: var(--color--blue);
+  border: none;
+  transition: 0.2s;
+  &.visible {
+    transform: rotate(45deg);
+    mix-blend-mode: difference;
+  }
+}
+
+.menu {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color--white);
+  &.visible {
+    display: flex;
+  }
 }

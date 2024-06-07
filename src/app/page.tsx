@@ -73,8 +73,19 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className={styles.works}>
-        <div className={styles.absoluteArea}></div>
+      <section className={styles.work}>
+        <div className={styles.content}>
+          <p className={styles.caption}>Work1</p>
+          <a href="./work1" className={styles.link}>
+            Portfolio 2024
+          </a>
+        </div>
+        <div className={styles.content}>
+          <p className={styles.caption}>Work2</p>
+          <a href="./work2" className={styles.link}>
+            Otetesakka
+          </a>
+        </div>
       </section>
     </>
   );

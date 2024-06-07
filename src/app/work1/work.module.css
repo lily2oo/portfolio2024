@@ -1,8 +1,25 @@
 .header {
+  position: relative;
   width: 100vw;
+  padding: 8vh 8vw;
+  margin-right: 16vw;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  &::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 120vh;
+    border-left: 50px solid;
+    border-image: linear-gradient(#cedddd, #ebefef);
+    border-image-slice: 1;
+    position: absolute;
+    top: 50%;
+    right: -12vw;
+    transform: translate(0, -50%) rotate(18deg);
+    z-index: -1;
+  }
   .container {
     .title {
       display: inline-block;
@@ -14,36 +31,178 @@
       font-size: 16px;
     }
   }
-  .imageContainer{
+  .imageContainer {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 70%;
     overflow: hidden;
     .image {
-        width: 100%;
-        height: auto;
-      }
+      width: 100%;
+      height: auto;
+    }
   }
-  .flex{
+  .flex {
     display: flex;
     flex-direction: column;
     justify-content: end;
     align-items: end;
     gap: 12px;
-    .descContainer{
-        width: 350px;
-        display: flex;
-        justify-content: space-between;
-        align-items: end;
-        font-size: 14px;
-        line-height: 1em;
-        .title{
-
-        }
-        .desc{
-
-        }
+    .descContainer {
+      width: 350px;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      font-size: 14px;
+      line-height: 1em;
+      .title {
+      }
+      .desc {
+      }
     }
   }
+}
+
+.text {
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .textContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 64px;
+    .content {
+      font-size: 16px;
+      .title {
+        color: var(--color--grey);
+        margin-bottom: 16px;
+        line-height: 1.5em;
+      }
+      .desc {
+        line-height: 1.7em;
+        margin-bottom: 16px;
+        .list{
+            list-style:inside
+        }
+      }
+      .imageContainer {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+    }
+  }
+}
+
+.work {
+  width: 1600px;
+  background-color: var(--color--black);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.carrer {
+  box-sizing: content-box;
+  position: relative;
+  width: 500px;
+  padding: 0;
+  .line {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .flex {
+      height: 100%;
+      position: relative;
+      display: inline-flex;
+      flex-direction: column;
+      gap: 12vh;
+      justify-content: center;
+      align-items: flex-start;
+      .title {
+        text-wrap: nowrap;
+        font-size: 24px;
+        color: var(--color--grey);
+        position: absolute;
+        top: 8vh;
+        right: 32px;
+      }
+      .relative {
+        position: relative;
+        .rect {
+          width: 14px;
+          height: 14px;
+          background-color: var(--color--grey);
+          border-radius: 50%;
+        }
+        .flow {
+          text-wrap: nowrap;
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translate(36px, -50%);
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+          .number {
+            font-size: 14px;
+          }
+          .period {
+            font-size: 14px;
+          }
+        }
+        &::after {
+          content: "";
+          display: block;
+          width: 0;
+          height: 200vh;
+          border-left: 1px solid;
+          border-image: linear-gradient(#cedddd, #ebefef);
+          border-image-slice: 1;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: -1;
+        }
+      }
+    }
+  }
+}
+
+.more{
+    width: auto;
+    background: linear-gradient(#cedddd, #ebefef);
+    display: flex;
+    flex-direction: column;
+    gap: 8vh;
+    justify-content: center;
+    align-items: center;
+    .container{
+        .textContainer{
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            font-size: 16px;
+            .caption{
+                font-size: 14px;
+                color: var(--color--black);
+            }
+            .link{
+                color: var(--color--blue);
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.marker {
+  background-color: rgba(206, 221, 221, 0.4);
 }

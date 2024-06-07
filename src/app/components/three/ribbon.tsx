@@ -138,13 +138,14 @@ const Ribbon = ({ scrollPosition }: Props) => {
     const materials = Array.isArray(ref.current!.material)
       ? ref.current!.material
       : [ref.current!.material];
+      const mouseOffset = pointerRef.current!.x * 0.1;
     materials.forEach((m) => {
       if (
         m instanceof THREE.MeshBasicMaterial ||
         m instanceof THREE.MeshStandardMaterial
       ) {
         if (m.map) {
-          m.map.offset.x = timeRef.current * 0.5;
+          m.map.offset.x = timeRef.current * 0.5 +mouseOffset;
         }
       }
     });
@@ -160,6 +161,14 @@ const Ribbon = ({ scrollPosition }: Props) => {
       0
     );
     camera.position.copy(cameraPosition);
+    const targetCameraPositionX = THREE.MathUtils.mapLinear(
+      pointerRef.current!.x,
+      -0.5,
+      0.5,
+      -5,
+      5
+    );
+    camera.position.y += (targetCameraPositionX - camera.position.y) * 0.001;
     const targetCameraPositionY = THREE.MathUtils.mapLinear(
       pointerRef.current!.y,
       -0.5,
@@ -167,7 +176,7 @@ const Ribbon = ({ scrollPosition }: Props) => {
       -5,
       5
     );
-    camera.position.y += (targetCameraPositionY - camera.position.y) * 0.05;
+    camera.position.y += (targetCameraPositionY - camera.position.y) * 0.001;
     camera.position.z = 2;
     camera.updateProjectionMatrix();
   });

@@ -608,7 +608,7 @@ const About = () => {
         </div>
       </section>
       <section className={styles.contact}>
-        <p className={styles.caption}>Work with Me!</p>
+        <a href="mailto:lily2oo.rec@gmail.com" className={styles.caption}>Work with Me!</a>
       </section>
     </>
   );

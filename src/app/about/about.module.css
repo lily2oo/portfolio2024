@@ -357,6 +357,7 @@
         .title {
           font-size: 24px;
           line-height: 1.5em;
+          transform: translate(-1px,0);
         }
         .svg {
           width: 14px;
@@ -538,9 +539,15 @@
   background: linear-gradient(#cedddd, #ebefef);
   position: relative;
   width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   .caption{
     font-size: 24px;
     line-height: 1.5em;
     color: var(--color--white);
+    &:hover{
+      background-color: var(--color--blue);
+    }
   }
 }

@@ -17,7 +17,7 @@ const Footer = () => {
               </div>
               <div className={styles.contactContainer}>
                 <p className={styles.contact}>contact with me:</p>
-                <p className={styles.gmail}>lily2oo.rec@gmail.com</p>
+                <a href="mailto:lily2oo.rec@gmail.com" className={styles.gmail}>lily2oo.rec@gmail.com</a>
               </div>
               <div className={styles.snsContainer}>
                 <a
@@ -45,22 +45,42 @@ const Footer = () => {
             </div>
             <nav className={styles.nav}>
               <li>
-                <a className={`${styles.link} ${pathname === '/' ? styles.active : ''}`} href="./">
+                <a
+                  className={`${styles.link} ${
+                    pathname === "/" ? styles.active : ""
+                  }`}
+                  href="./"
+                >
                   TOP
                 </a>
               </li>
               <li>
-                <a className={`${styles.link} ${pathname === '/about' ? styles.active : ''}`} href="./about">
+                <a
+                  className={`${styles.link} ${
+                    pathname === "/about" ? styles.active : ""
+                  }`}
+                  href="./about"
+                >
                   ABOUT
                 </a>
               </li>
               <li>
-                <a className={`${styles.link} ${pathname === '/work1' ? styles.active : ''}`} href="/work1">
+                <a
+                  className={`${styles.link} ${
+                    pathname === "/work1" ? styles.active : ""
+                  }`}
+                  href="/work1"
+                >
                   WORK1
                 </a>
               </li>
               <li>
-              <a className={`${styles.link} ${pathname === '/work2' ? styles.active : ''}`} href="/work2">
+                <a
+                  className={`${styles.link} ${
+                    pathname === "/work2" ? styles.active : ""
+                  }`}
+                  href="/work2"
+                >
                   WORK2
                 </a>
               </li>
@@ -68,12 +88,44 @@ const Footer = () => {
           </div>
         </div>
       </section>
-      <div className={styles.next}>
-        <div>
-          <p className={styles.caption}>Next is ...</p>
-          <p className={styles.link}>ABOUT &gt;</p>
+      <a
+        className={styles.nextContainer}
+        href={`${
+          pathname === "/"
+            ? "/about"
+            : pathname === "/about"
+            ? "/work1"
+            : pathname === "/work1"
+            ? "/"
+            : "/"
+        }`}
+      >
+        <div
+          className={`${styles.next} ${
+            pathname === "/"
+              ? styles.page
+              : pathname === "/about"
+              ? styles.about
+              : pathname === "/work1"
+              ? styles.work1
+              : styles.page
+          }`}
+        >
+          <div className={styles.texts}>
+            <p className={styles.caption}>Next ...</p>
+            <p className={styles.link}>
+              {pathname === "/"
+                ? "about"
+                : pathname === "/about"
+                ? "work1"
+                : pathname === "/work1"
+                ? "top"
+                : "top"}{" "}
+              &gt;
+            </p>
+          </div>
         </div>
-      </div>
+      </a>
     </>
   );
 };
