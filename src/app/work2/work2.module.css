@@ -1,0 +1,48 @@
+.flex{
+    font-family: TsukuARdGothicStd-M;
+}
+
+.header {
+  position: relative;
+  width: 100vw;
+  padding: 8vh 8vw;
+  margin-right: 16vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  &::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 120vh;
+    border-left: 50px solid;
+    border-image: linear-gradient(#cedddd, #ebefef);
+    border-image-slice: 1;
+    position: absolute;
+    top: 50%;
+    right: -12vw;
+    transform: translate(0, -50%) rotate(18deg);
+    z-index: -1;
+  }
+  .container {
+    transform: translate(0,40px);
+    .svg {
+      width: 400px;
+    }
+    .name {
+      font-size: 16px;
+      line-height: 1.2em;
+    }
+  }
+  .imageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+    overflow: hidden;
+    .image {
+      width: 100%;
+      height: auto;
+    }
+  }
+}

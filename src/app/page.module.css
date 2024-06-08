@@ -7,6 +7,11 @@
   z-index: 0;
 }
 
+.work2{
+  background-color: var(--color--beige);
+  height: 100%;
+}
+
 .scrollable {
   position: absolute;
   top: 0;

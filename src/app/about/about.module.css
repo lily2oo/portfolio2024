@@ -428,6 +428,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin-bottom: 8px;
         .question {
           font-size: 20px;
           line-height: 1.5em;
