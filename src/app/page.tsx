@@ -62,7 +62,7 @@ export default function Home() {
             <p className={styles.p}>Webデザイン</p>
             <p className={styles.p}>グラフィック</p>
             <p className={styles.p}>写真・映像</p>
-            <p className={styles.p}>編集</p>
+            <p className={styles.p}>3DCG</p>
             <p className={styles.p}>企画・コピー</p>
           </div>
           <div className={styles.skill2}>

@@ -1,10 +1,12 @@
-.flex{
-    font-family: TsukuARdGothicStd-M;
+.flex {
+  font-family: TsukuARdGothicStd-M;
+  display: flex;
 }
 
 .header {
   position: relative;
   width: 100vw;
+  height: 100vh;
   padding: 8vh 8vw;
   margin-right: 16vw;
   display: flex;
@@ -16,8 +18,7 @@
     width: 0;
     height: 120vh;
     border-left: 50px solid;
-    border-image: linear-gradient(#cedddd, #ebefef);
-    border-image-slice: 1;
+    border-color: var(--color--orange);
     position: absolute;
     top: 50%;
     right: -12vw;
@@ -25,7 +26,7 @@
     z-index: -1;
   }
   .container {
-    transform: translate(0,40px);
+    transform: translate(0, 40px);
     .svg {
       width: 400px;
     }
@@ -43,6 +44,41 @@
     .image {
       width: 100%;
       height: auto;
+    }
+  }
+}
+
+.about {
+  .flex {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 40px;
+    .title {
+      display: flex;
+      align-items: center;
+      text-wrap: nowrap;
+      .svg {
+        width: 160px;
+      }
+      .text {
+        text-wrap: nowrap;
+      }
+    }
+    .descContainer {
+      display: flex;
+      gap: 40px;
+      border-bottom: 1px dashed var(--color--black);
+      .svg {
+        width: 40px;
+      }
+      .desc {
+        width: auto;
+        /* white-space:nowrap; */
+        font-size: 16px;
+        line-height: 1.6em;
+        padding-left: 24px;
+      }
     }
   }
 }
